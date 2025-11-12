@@ -1,0 +1,16 @@
+.campo-pesquisa{
+    height: 50%;
+    width: 30%;
+}
+
+input{
+    width: 90%;
+    border: none;
+    background-color: white;
+}
+
+button{
+    width: 10%;
+    border: none;
+    background-color: rgb(185, 185, 185);
+}
