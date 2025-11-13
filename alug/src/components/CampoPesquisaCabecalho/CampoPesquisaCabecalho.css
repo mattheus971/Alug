@@ -1,16 +1,24 @@
 .campo-pesquisa{
-    height: 50%;
-    width: 30%;
+    height: 25px;
+    width: 400px;
 }
 
-input{
+.input-pesquisa{
     width: 90%;
+    height: 100%;
     border: none;
     background-color: white;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    padding: 6px;
 }
 
-button{
+.botao-pesquisar{
     width: 10%;
+    height: 100%;
     border: none;
     background-color: rgb(185, 185, 185);
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+    cursor: pointer;
 }

@@ -1,6 +1,6 @@
 import AvatarUsuario from '../AvatarUsuario/AvatarUsuario'
+import BotaoCriarAnuncio from '../BotaoCriarAnuncio/BotaoCriarAnuncio'
 import CampoPesquisaCabecalho from '../CampoPesquisaCabecalho/CampoPesquisaCabecalho'
-import Input from '../Input/Input'
 import './Cabecalho.css'
 
 function Cabecalho() {
@@ -10,7 +10,11 @@ function Cabecalho() {
 
       <CampoPesquisaCabecalho />
 
-      <AvatarUsuario />
+      <div className='container-criaranuncio-avatar'>
+        <BotaoCriarAnuncio />
+        <AvatarUsuario />
+      </div>
+
     </div>
   )
 }

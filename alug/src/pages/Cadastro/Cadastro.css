@@ -1,0 +1,22 @@
+.corpo-cadastro{
+    display: flex;
+    flex-direction: row;
+}
+
+.container-esquerda{
+    background-color: #2C3E50;
+    height: 100vh;
+    width: 40%;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-direita{
+    background-color: #C8CDD2;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

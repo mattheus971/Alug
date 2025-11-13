@@ -1,8 +1,19 @@
-import React from 'react'
+import FormularioCadastro from '../../components/FormularioCadastro/FormularioCadastro'
+import './Cadastro.css'
 
 function Cadastro() {
   return (
-    <div><h1>Cadastro</h1></div>
+    <div className='corpo-cadastro'>
+      <div className='container-esquerda'>
+        teste
+      </div>
+
+      <div className='container-direita'>
+        <FormularioCadastro />        
+      </div>
+    </div>
+
+
   )
 }
 
