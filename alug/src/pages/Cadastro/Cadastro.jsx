@@ -1,15 +1,34 @@
-import FormularioCadastro from '../../components/FormularioCadastro/FormularioCadastro'
 import './Cadastro.css'
 
 function Cadastro() {
   return (
     <div className='corpo-cadastro'>
+
       <div className='container-esquerda'>
-        teste
+        Conteudo container esquerda
       </div>
 
       <div className='container-direita'>
-        <FormularioCadastro />        
+        <form action="">
+          <div className='container-input'>
+            <label>Nome</label>
+            <input type="text" />
+          </div>
+
+          <div className='container-input'>
+            <label>Email</label>
+            <input type="email" />
+          </div>
+
+          <div className='container-input'>
+            <label>Senha</label>
+            <input type="password" />
+          </div>
+
+          <button>Criar</button>
+
+        </form>
+
       </div>
     </div>
 

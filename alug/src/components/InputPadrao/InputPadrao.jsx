@@ -1,8 +1,9 @@
 import React from 'react'
+import './InputPadrao.css'
 
 function InputPadrao({ label, placeholder, type = "text", value }) {
     return (
-        <div>
+        <div className='container-input'>
             {label && <label>{label}</label>}
             <input
             placeholder={placeholder}
