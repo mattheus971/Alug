@@ -10,6 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 32px;
 }
 
 .container-direita{
@@ -21,19 +22,63 @@
     align-items: center;
 }
 
-form{
+.formulario-cadastro{
     background-color: white;
-    padding: 18px;
+    padding: 32px;
     border-radius: 16px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    height: 500px;
-    width: 500px;
+    gap: 12px;
+    width: 60%;
+    height: 400px;
 }
 
 .container-input{
     display: flex;
     flex-direction: column;
+    width: 90%;
+}
+
+.labels-cadastro{
+    font-size: 14px;
+    color: rgb(65, 65, 65);
+}
+
+.inputs-cadastro{
+    padding: 8px;
+    width: 100%;
+    border: solid 1px #c8c8c8;
+    background-color: whitesmoke;
+    border-radius: 8px;
+}
+
+.inputs-cadastro:focus {
+    outline: none;
+}
+
+.botao-criarconta{
+    margin-top: 10px;
+    padding: 10px;
+    width: 90%;
+    border: none;
+    border-radius: 8px;
+    background-color: #4A90E2;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.botao-criarconta:hover{
+    background-color: #5ba7ff;
+}
+
+a{
+    text-decoration: none;
+    color: #2C3E50;
+}
+
+a:hover{
+    color: #0069e0;
 }

@@ -5,28 +5,29 @@ function Cadastro() {
     <div className='corpo-cadastro'>
 
       <div className='container-esquerda'>
-        Conteudo container esquerda
+        <h1>Conteúdo Cadastro</h1>
       </div>
 
       <div className='container-direita'>
-        <form action="">
+        <form action="" className='formulario-cadastro'>
           <div className='container-input'>
-            <label>Nome</label>
-            <input type="text" />
+            <label className='labels-cadastro'>Nome</label>
+            <input type="text" className='inputs-cadastro' />
           </div>
 
           <div className='container-input'>
-            <label>Email</label>
-            <input type="email" />
+            <label className='labels-cadastro'>Email</label>
+            <input type="email" className='inputs-cadastro' />
           </div>
 
           <div className='container-input'>
-            <label>Senha</label>
-            <input type="password" />
+            <label className='labels-cadastro'>Senha</label>
+            <input type="password" className='inputs-cadastro' />
           </div>
 
-          <button>Criar</button>
+          <button className='botao-criarconta'>Criar conta</button>
 
+          <a href="">Já tenho uma conta</a>
         </form>
 
       </div>

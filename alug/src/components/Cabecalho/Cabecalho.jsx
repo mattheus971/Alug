@@ -11,7 +11,7 @@ function Cabecalho() {
       <CampoPesquisaCabecalho />
 
       <div className='container-criaranuncio-avatar'>
-        <BotaoCriarAnuncio />
+        <button className='botao-criaranuncio' >Cria anúncio</button>
         <AvatarUsuario />
       </div>
 
