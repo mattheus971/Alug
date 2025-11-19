@@ -1,33 +1,96 @@
+import AlugImg from '../../components/image/AlugImag.png';
+import { Link } from 'react-router-dom';
+import { useState } from 'react'
+import axios from 'axios'
+import React from 'react'
 import './Cadastro.css'
 
 function Cadastro() {
+  const [nomeCad, setCadNome] = useState('')
+  const [emailCad, setCadEmail] = useState('')
+  const [senhaCad, setCadSenha] = useState('')
+  const [telefoneCad, setCadTelefone] = useState('')
+  const [dataNascimento, setCadDataNasc] = useState('')
+  const [urlImagem, setCadUrlImagem] = useState('')
+  const [mensagem, setMensagem] = useState('')
+
+  const Cadastrar = async (event) => {
+    event.preventDefault()
+
+    try {
+      const response = await axios.post('http://localhost:3000/usuario', {
+        nome: nomeCad,
+        email: emailCad,
+        senha: senhaCad,
+        telefone: telefoneCad,
+        data_nascimento: dataNascimento,
+        url_imagem: urlImagem
+      })
+
+      setMensagem('✅ Usuário cadastrado com sucesso!')
+      console.log('Novo usuário cadastrado:', response.data)
+
+      setCadNome('')
+      setCadEmail('')
+      setCadSenha('')
+      setCadTelefone('')
+      setCadDataNasc('')
+      setCadUrlImagem('')
+
+
+    } catch (error) {
+      console.error(error)
+      setMensagem('❌ Erro ao cadastrar usuário')
+    }
+  }
+
   return (
     <div className='corpo-cadastro'>
 
       <div className='container-esquerda'>
-        <h1>Conteúdo Cadastro</h1>
+      <img src={AlugImg} alt="Logo Alug" className="logo" />
       </div>
 
       <div className='container-direita'>
-        <form action="" className='formulario-cadastro'>
+        <form onSubmit={Cadastrar} className='formulario-cadastro'>
           <div className='container-input'>
-            <label className='labels-cadastro'>Nome</label>
-            <input type="text" className='inputs-cadastro' />
+            <label>Nome</label>
+            <input
+              type="text"
+              className='inputs-cadastro'
+              placeholder="Maria José"
+              value={nomeCad}
+              onChange={(e) => setCadNome(e.target.value)}
+            />
           </div>
 
           <div className='container-input'>
-            <label className='labels-cadastro'>Email</label>
-            <input type="email" className='inputs-cadastro' />
+            <label>E-mail</label>
+            <input
+              type="email"
+              className='inputs-cadastro'
+              placeholder="usuario@gmail.com"
+              value={emailCad}
+              onChange={(e) => setCadEmail(e.target.value)}
+            />
           </div>
 
           <div className='container-input'>
-            <label className='labels-cadastro'>Senha</label>
-            <input type="password" className='inputs-cadastro' />
+            <label>Senha</label>
+            <input
+              type="password"
+              className='inputs-cadastro'
+              placeholder="12345678"
+              value={senhaCad}
+              onChange={(e) => setCadSenha(e.target.value)}
+            />
           </div>
 
-          <button className='botao-criarconta'>Criar conta</button>
+          <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
 
-          <a href="">Já tenho uma conta</a>
+          <button className='botao-criarconta' type="submit">Criar conta</button>
+
+          <Link to="/login">Já tenho uma conta</Link>
         </form>
 
       </div>

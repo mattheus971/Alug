@@ -84,3 +84,30 @@ a{
 a:hover{
     color: #0069e0;
 }
+/* 📱 Responsividade */
+@media (max-width: 900px) {
+    .corpo-cadastro {
+        flex-direction: column;
+    }
+
+    .container-esquerda {
+        width: 100%;
+        height: 200px;
+    }
+
+    .container-direita {
+        width: 100%;
+        padding: 24px;
+    }
+
+    .formulario-login {
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 600px) {
+    .formulario-login {
+        padding: 24px;
+    }
+}
