@@ -53,12 +53,12 @@ function Cadastro() {
 
       <div className='container-direita'>
         <form onSubmit={Cadastrar} className='formulario-cadastro'>
+        <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
           <div className='container-input'>
             <label>Nome</label>
             <input
               type="text"
               className='inputs-cadastro'
-              placeholder="Maria José"
               value={nomeCad}
               onChange={(e) => setCadNome(e.target.value)}
             />
@@ -69,7 +69,6 @@ function Cadastro() {
             <input
               type="email"
               className='inputs-cadastro'
-              placeholder="usuario@gmail.com"
               value={emailCad}
               onChange={(e) => setCadEmail(e.target.value)}
             />
@@ -80,13 +79,10 @@ function Cadastro() {
             <input
               type="password"
               className='inputs-cadastro'
-              placeholder="12345678"
               value={senhaCad}
               onChange={(e) => setCadSenha(e.target.value)}
             />
           </div>
-
-          <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
 
           <button className='botao-criarconta' type="submit">Criar conta</button>
 

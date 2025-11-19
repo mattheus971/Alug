@@ -35,7 +35,7 @@ function Login() {
   };
 
   return (
-    <div className='corpo-cadastro'>
+    <div className='corpo-login'>
 
       <div className='container-esquerda'>
       <img src={AlugImg} alt="Logo Alug" className="logo" />
@@ -44,12 +44,12 @@ function Login() {
 
       <div className='container-direita'>
         <form onSubmit={Logar} className='formulario-login'>
+        <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
           <div className='container-input'>
             <label htmlFor="">E-mail</label>
             <input
               type="E-mail"
               className='inputs-login'
-              placeholder='usuario@gmail.com'
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -59,14 +59,11 @@ function Login() {
             <input
               type="password"
               className='inputs-login'  
-              placeholder='123456789'
               onChange={(e) => setSenha(e.target.value)}
             />
           </div>
 
-          <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
-
-          <button type="submit" className='botao-criarconta'>Criar conta</button>
+          <button type="submit" className='botao-criarconta'>Entrar</button>
 
           <Link to="/cadastro">Ainda não tenho conta</Link>
 

@@ -129,7 +129,7 @@ function CriarAnuncio() {
   };
 
   return (
-    <div className='corpo-cadastro'>
+    <div className='corpo-criaranuncio'>
 
       <div className='container-esquerda'>
         <img src={AlugImg} alt="Logo Alug" className="logo" />
