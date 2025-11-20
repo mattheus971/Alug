@@ -38,15 +38,15 @@ function Login() {
     <div className='corpo-login'>
 
       <div className='container-esquerda'>
-      <img src={AlugImg} alt="Logo Alug" className="logo" />
-      
+        <img src={AlugImg} alt="Logo Alug" className="logo" />
+
       </div>
 
       <div className='container-direita'>
         <form onSubmit={Logar} className='formulario-login'>
-        <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
+          <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
           <div className='container-input'>
-            <label htmlFor="">E-mail</label>
+            <label className='labels-cadastro'>E-mail</label>
             <input
               type="E-mail"
               className='inputs-login'
@@ -55,17 +55,17 @@ function Login() {
           </div>
 
           <div className='container-input'>
-            <label htmlFor="">Senha</label>
+            <label className='labels-cadastro'>Senha</label>
             <input
               type="password"
-              className='inputs-login'  
+              className='inputs-login'
               onChange={(e) => setSenha(e.target.value)}
             />
           </div>
 
           <button type="submit" className='botao-criarconta'>Entrar</button>
 
-          <Link to="/cadastro">Ainda não tenho conta</Link>
+          <Link to="/cadastro" className='link-cadastro-login'>Ainda não tenho conta</Link>
 
         </form>
 

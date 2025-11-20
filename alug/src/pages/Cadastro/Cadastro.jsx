@@ -55,7 +55,7 @@ function Cadastro() {
         <form onSubmit={Cadastrar} className='formulario-cadastro'>
         <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
           <div className='container-input'>
-            <label>Nome</label>
+            <label className='labels-cadastro'>Nome</label>
             <input
               type="text"
               className='inputs-cadastro'
@@ -65,7 +65,7 @@ function Cadastro() {
           </div>
 
           <div className='container-input'>
-            <label>E-mail</label>
+            <label className='labels-cadastro'>E-mail</label>
             <input
               type="email"
               className='inputs-cadastro'
@@ -75,7 +75,7 @@ function Cadastro() {
           </div>
 
           <div className='container-input'>
-            <label>Senha</label>
+            <label className='labels-cadastro'>Senha</label>
             <input
               type="password"
               className='inputs-cadastro'
@@ -86,7 +86,7 @@ function Cadastro() {
 
           <button className='botao-criarconta' type="submit">Criar conta</button>
 
-          <Link to="/login">Já tenho uma conta</Link>
+          <Link to="/login" className='link-cadastro-login'>Já tenho uma conta</Link>
         </form>
 
       </div>

@@ -70,15 +70,20 @@
     cursor: pointer;
 }
 
+.botao-cadastrar:focus {
+    outline: none;
+}
+
 .botao-criarconta:hover{
     background-color: #5ba7ff;
 }
 
-a{
+.link-cadastro-login{
+    font-size: 14px;
     text-decoration: none;
     color: #2C3E50;
 }
 
-a:hover{
+.link-cadastro-login:hover{
     color: #0069e0;
 }
