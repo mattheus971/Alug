@@ -28,7 +28,9 @@ function Cadastro() {
       })
 
       setMensagem('✅ Usuário cadastrado com sucesso!')
-      console.log('Novo usuário cadastrado:', response.data)
+      alert("Usuario ")
+
+      window.location.href = "/cadastro ";
 
       setCadNome('')
       setCadEmail('')

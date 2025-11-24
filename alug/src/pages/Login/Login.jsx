@@ -15,14 +15,22 @@ function Login() {
   const Logar = async (event) => {
     event.preventDefault();
 
+    
+    
     try {
       const response = await axios.post('http://localhost:3000/login', {
         email,
         senha
       });
-
+      
       setMensagem(response.data.message);
-      console.log('Usuário logado:', response.data.usuario);
+      alert("Usuario logado!")
+      
+      localStorage.setItem("usuario", JSON.stringify(response.data.usuario));
+
+
+      window.location.href = "/ ";
+
 
 
     } catch (error) {
@@ -48,7 +56,7 @@ function Login() {
           <div className='container-input'>
             <label className='labels-cadastro'>E-mail</label>
             <input
-              type="E-mail"
+              type="email"
               className='inputs-login'
               onChange={(e) => setEmail(e.target.value)}
             />
