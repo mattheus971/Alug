@@ -4,6 +4,7 @@ import axios from 'axios'
 import React from 'react'
 import './CriarAnuncio.css'
 import Cabecalho from '../../components/Cabecalho/Cabecalho';
+import CabecalhoSimples from '../../components/CabecalhoSimples/CabecalhoSimples';
 
 function CriarAnuncio() {
 
@@ -132,7 +133,7 @@ function CriarAnuncio() {
   return (
     
     <div className='corpo-criaranuncio'>
-      <Cabecalho />
+      <CabecalhoSimples />
       
       <div className='container-corpo-criranuncio'>
       <div className='container-titulo'>

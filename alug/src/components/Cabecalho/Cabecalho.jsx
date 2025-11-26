@@ -1,5 +1,4 @@
 import AvatarUsuario from '../AvatarUsuario/AvatarUsuario'
-import BotaoCriarAnuncio from '../BotaoCriarAnuncio/BotaoCriarAnuncio'
 import CampoPesquisaCabecalho from '../CampoPesquisaCabecalho/CampoPesquisaCabecalho'
 import './Cabecalho.css'
 
@@ -11,7 +10,7 @@ function Cabecalho() {
       <CampoPesquisaCabecalho />
 
       <div className='container-criaranuncio-avatar'>
-        <button className='botao-criaranuncio' >Cria anúncio</button>
+        <button className='botao-criaranuncio' >Criar anúncio</button>
         <AvatarUsuario />
       </div>
 
