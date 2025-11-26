@@ -1,0 +1,28 @@
+.container-cabecalho-simples{
+    height: 64px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #2C3E50;
+}
+
+.container-criaranuncio-avatar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.botao-criaranuncio{
+    border: none;
+    background-color: #4A90E2;
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 8px;
+}

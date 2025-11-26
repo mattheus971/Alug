@@ -4,6 +4,7 @@ import axios from 'axios';
 import React from 'react';
 import './CriarAnuncio.css';
 import Cabecalho from '../../components/Cabecalho/Cabecalho';
+import CabecalhoSimples from '../../components/CabecalhoSimples/CabecalhoSimples';
 
 function CriarAnuncio() {
 
@@ -116,8 +117,16 @@ function CriarAnuncio() {
 
   return (
     <div className='corpo-criaranuncio'>
-      <div className='container-esquerda'>
-        <img src={AlugImg} alt="Logo Alug" className="logo" />
+      <CabecalhoSimples />
+      
+      <div className='container-corpo-criranuncio'>
+      <div className='container-titulo'>
+        <h1 className='titulo-das-informacoes'>Qual vai ser o titulo do seu anúncio?</h1>
+        <input type="text" className='input-titulo' placeholder=''/>
+        <div className='container-botoes-voltar-continuar'>
+          <button className='botao-voltar-criaranuncio'>Voltar</button>
+          <button className='botao-continuar-criaranuncio'>Continuar</button>
+        </div>
       </div>
 
       <div className='container-direita'>
