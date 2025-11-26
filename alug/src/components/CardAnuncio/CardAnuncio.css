@@ -1,0 +1,45 @@
+/* CardAnuncio.css */
+
+.card {
+  width: 250px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  margin: 15px;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.card-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: 10px 15px;
+}
+
+.card-info h2 {
+  font-size: 1.1rem;
+  margin: 5px 0;
+  color: #333;
+}
+
+.card-tipo {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 5px;
+}
+
+.card-preco {
+  font-weight: bold;
+  color: #2e8b57;
+}
+

@@ -1,224 +1,187 @@
-.corpo-criaranuncio{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    min-height: 100vh;
+/* Reset básico do navegador */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
 }
 
-.container-corpo-criranuncio{
-    min-height: calc(100vh - 64px);
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Layout principal */
+.corpo-criaranuncio {
+  display: flex;
+  flex-direction: row;
+  height: 100vh; /* ocupa toda a tela */
+  margin: 0;
 }
 
-.container-titulo{
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
+/* Esquerda (logo) */
+.container-esquerda {
+  background-color: #2C3E50;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 32px;
 }
 
-.input-titulo{
-    width: 100%;
-    border: solid 2px rgb(185, 185, 185);
-    border-radius: 8px;
-    padding: 12px;
+/* Direita (formulário) */
+.container-direita {
+  background-color: #C8CDD2;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* garante que o formulário fique no topo */
+  padding: 40px 0;
+  overflow-y: auto;
 }
 
-.input-titulo:focus{
-    outline: none;
-}
-.container-botoes-voltar-continuar{
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.botao-continuar-criaranuncio{
-    padding: 12px;
-    width: 100px;
-    border: none;
-    background-color: #4A90E2;
-    border-radius: 8px;
-    color: white;
-    cursor: pointer;
+/* Formulário */
+.formulario-Crianuncio {
+  background-color: white;
+  padding: 32px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
 }
 
-.botao-continuar-criaranuncio:hover{
-    background-color: #5ba7ff;
+/* Inputs */
+.container-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
-.botao-voltar-criaranuncio{
-    padding: 12px;
-    width: 100px;
-    border: solid 2px rgb(185, 185, 185);
-    border-radius: 8px;
-    background-color: white;
-    cursor: pointer;
-}
-
-.botao-voltar-criaranuncio:hover{
-    background-color: whitesmoke;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .corpo-criaranuncio{
-    display: flex;
-    min-height: 100vh;
-}
-
-.container-esquerda{
-    background-color: #2C3E50;
-    width: 40%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 32px;
-}
-
-.container-direita{
-    background-color: #C8CDD2;
-    width: 60%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 0;
-    overflow-y: auto; 
-}
-
-.formulario-Crianuncio{
-    background-color: white;
-    padding: 32px;
-    border-radius: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    width: 80%;
-    max-width: 600px;
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.15);
-}
-
-.container-input{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.inputs-Crianuncio{
-    padding: 10px;
-    width: 100%;
-    border: solid 1px #c8c8c8;
-    background-color: whitesmoke;
-    border-radius: 8px;
+.inputs-Crianuncio {
+  padding: 10px;
+  width: 100%;
+  border: solid 1px #c8c8c8;
+  background-color: whitesmoke;
+  border-radius: 8px;
 }
 
 .inputs-login:focus {
-    outline: none;
-    border-color: #4A90E2;
+  outline: none;
+  border-color: #4A90E2;
 }
 
-.container-imagens {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: #ffffff;
-    padding: 16px;
-    border-radius: 12px;
-    border: 1px solid #dcdcdc;
-}
-
-.container-imagens label {
-    color: #2C3E50;
-}
-
-.input-file {
-    padding: 10px;
-    background-color: whitesmoke;
-    border-radius: 8px;
-    border: 1px solid #c8c8c8;
-    cursor: pointer;
-}
-
-.input-file:hover {
-    background-color: #e9e9e9;
-}
-
-.preview-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-.preview-item {
-    width: 110px;
-    height: 110px;
-    border-radius: 10px;
-    overflow: hidden;
-    border: 2px solid #dcdcdc;
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.preview-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
+/* Botão */
 .botao-criarconta{
-    padding: 12px;
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    background-color: #4A90E2;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background-color: #4A90E2;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .botao-criarconta:hover{
-    background-color: #5ba7ff;
+  background-color: #5ba7ff;
 }
 
+/* Links */
 a{
-    text-decoration: none;
-    color: #2C3E50;
-    padding: 6px;
-    border-radius: 8px;
+  text-decoration: none;
+  color: #2C3E50;
+  padding: 6px;
+  border-radius: 8px;
 }
 
 a:hover{
-    color: #0069e0;
-} */
+  color: #0069e0;
+}
+
+/* Imagens (preview) */
+.container-imagens {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #ffffff;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #dcdcdc;
+}
+
+.preview-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.preview-item {
+  width: 110px;
+  height: 110px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #dcdcdc;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .corpo-criaranuncio {
+    flex-direction: column;
+  }
+
+  .container-esquerda,
+  .container-direita {
+    width: 100%;
+    padding: 20px 0;
+  }
+
+  .container-direita {
+    align-items: flex-start;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .formulario-Crianuncio {
+    padding: 24px;
+    width: 90%;
+  }
+
+  .inputs-Crianuncio {
+    padding: 8px;
+  }
+
+  .botao-criarconta {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario-Crianuncio {
+    padding: 16px;
+    width: 95%;
+  }
+
+  .inputs-Crianuncio {
+    padding: 6px;
+  }
+
+  .botao-criarconta {
+    font-size: 13px;
+    padding: 8px;
+  }
+
+  /* Esconde o container esquerdo no celular pequeno */
+  .container-esquerda {
+    display: none;
+  }
+}
