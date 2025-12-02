@@ -119,7 +119,7 @@ function CriarAnuncio() {
     <div className='corpo-criaranuncio'>
       <CabecalhoSimples />
       
-      <div className='container-corpo-criranuncio'>
+      <div className='container-corpo-criranuncio'></div>
       <div className='container-titulo'>
         <h1 className='titulo-das-informacoes'>Qual vai ser o titulo do seu anúncio?</h1>
         <input type="text" className='input-titulo' placeholder=''/>
