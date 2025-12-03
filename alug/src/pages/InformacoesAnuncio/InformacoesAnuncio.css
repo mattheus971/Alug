@@ -1,0 +1,39 @@
+.wrapper-anuncio {
+    display: flex;
+    width: 100%;
+}
+
+.cntnr-esquerda-infos-anuncio {
+    background-color: rgb(211, 211, 211);
+    gap: 10px;
+}
+
+.cntnr-direita-infos-anuncio {
+    background-color: rgb(194, 194, 194);
+}
+
+.cntnr-esquerda-infos-anuncio,
+.cntnr-direita-infos-anuncio {
+    flex: 1;
+    padding: 10px;
+    box-sizing: border-box;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .wrapper-anuncio {
+        flex-direction: column;
+        /* Ficam empilhados */
+    }
+}
+
+.inputs-fotos {
+    width: 500px;
+    height: 500px;
+    background-color: #3498db;
+
+}
