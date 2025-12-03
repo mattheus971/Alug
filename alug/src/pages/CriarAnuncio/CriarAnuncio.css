@@ -185,3 +185,19 @@ a:hover{
     display: none;
   }
 }
+/* Preview das imagens */
+.preview-imagens {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  gap: 10px; /* Espaço entre as imagens */
+}
+
+/* Cada imagem do preview */
+.preview-imagens img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover; /* Mantém proporção e recorta se necessário */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

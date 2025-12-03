@@ -1,10 +1,7 @@
-import AlugImg from '../../components/image/AlugImag.png';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import React from 'react';
 import './CriarAnuncio.css';
-import Cabecalho from '../../components/Cabecalho/Cabecalho';
-import CabecalhoSimples from '../../components/CabecalhoSimples/CabecalhoSimples';
 
 function CriarAnuncio() {
 
@@ -26,9 +23,19 @@ function CriarAnuncio() {
   const [mensagem, setMensagem] = useState('');
   const [imagens, setImagens] = useState([]);
 
+
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const userLogged = localStorage.getItem("usuario")
+      ? JSON.parse(localStorage.getItem("usuario"))
+      : null;
+    setUser(userLogged);
+  }, []);
+
   const buscarCep = async () => {
-    if (cep.length !== 8) {
-      alert('Digite um CEP válido com 8 dígitos');
+    if (cep.length !== 9) {
+      alert('Digite um CEP válido');
       return;
     }
 
@@ -49,98 +56,94 @@ function CriarAnuncio() {
       console.error(error);
     }
   };
-
   const CriarAnuncioFunc = async (event) => {
     event.preventDefault();
 
-    try {
-      // 1️⃣ Criar imóvel
-      const imovelResponse = await axios.post('http://localhost:3000/imoveis', {
-        titulo,
-        tipo,
-        area,
-        quartos,
-        banheiros,
-        mobilia,
-        numero_garagem: numeroGaragem,
-        estado,
-        cidade,
-        bairro,
-        rua,
-        numero,
-        cep,
-        descricao,
-        preco,
-        usuario_id: 1 // troque pelo id do usuário logado
-      });
+    const userLogged = localStorage.getItem("usuario")
+      ? JSON.parse(localStorage.getItem("usuario"))
+      : null;
 
-      const imovelId = imovelResponse.data.id_imoveis;
+    if (!userLogged) {
+      alert('Faça login antes de criar um anúncio');
+    } else {
+      try {
+        const imovelResponse = await axios.post('http://localhost:3000/imoveis', {
+          titulo,
+          tipo,
+          area,
+          quartos,
+          banheiros,
+          mobilia,
+          numero_garagem: numeroGaragem,
+          estado,
+          cidade,
+          bairro,
+          rua,
+          numero,
+          cep,
+          descricao,
+          preco,
+          usuario_id: userLogged.id_usuario,
+        });
 
-      // 2️⃣ Enviar imagens
-      if (imagens.length > 0) {
+        const imovelId = imovelResponse.data.id_imoveis;
+
         for (let i = 0; i < imagens.length; i++) {
           const formData = new FormData();
           formData.append('imovel_id', imovelId);
           formData.append('url_imagem', imagens[i]);
 
           await axios.post('http://localhost:3000/imagens', formData, {
-            headers: { 'Content-Type': 'multipart/form-data' }
+            headers: { 'Content-Type': 'multipart/form-data' },
           });
         }
+
+        setMensagem('✅ Imóvel cadastrado com sucesso!');
+      } catch (error) {
+        console.error(error);
+        setMensagem('❌ Erro ao cadastrar imóvel');
       }
-
-      setMensagem('✅ Imóvel cadastrado com sucesso!');
-
-      // Limpar campos
-      setTitulo('');
-      setTipo('');
-      setArea('');
-      setQuartos('');
-      setBanheiros('');
-      setMobilia('');
-      setNumeroGaragem('');
-      setEstado('');
-      setCidade('');
-      setBairro('');
-      setRua('');
-      setNumero('');
-      setCep('');
-      setDescricao('');
-      setPreco('');
-      setImagens([]);
-
-    } catch (error) {
-      console.error(error);
-      setMensagem('❌ Erro ao cadastrar imóvel');
     }
   };
 
+
+
+
   return (
     <div className='corpo-criaranuncio'>
-      <CabecalhoSimples />
-      
-      <div className='container-corpo-criranuncio'></div>
-      <div className='container-titulo'>
-        <h1 className='titulo-das-informacoes'>Qual vai ser o titulo do seu anúncio?</h1>
-        <input type="text" className='input-titulo' placeholder=''/>
-        <div className='container-botoes-voltar-continuar'>
-          <button className='botao-voltar-criaranuncio'>Voltar</button>
-          <button className='botao-continuar-criaranuncio'>Continuar</button>
-        </div>
+      <div className='container-esquerda'>
+        <img src="./image/AlugImag.png" alt="" />
       </div>
 
       <div className='container-direita'>
         <form onSubmit={CriarAnuncioFunc} className='formulario-Crianuncio'>
+    <div className='container-input'>
+  <label>Imagens (máx. 4)</label>
+  <input
+    className='inputs-Crianuncio'
+    type="file"
+    multiple
+    onChange={(e) => {
+      const files = Array.from(e.target.files);
+      if (files.length > 4) {
+        alert("Você só pode adicionar até 4 imagens!");
+        return;
+      }
+      setImagens(files);
+      console.log(files)
+    }}
+  />
+  <div className="preview-imagens">
+    {imagens && imagens.map((img, index) => (
+      <img
+        key={index}
+        src={URL.createObjectURL(img)}
+        alt={`Preview ${index}`}
+      />
+    ))}
+  </div>
+</div>
 
-          <div className='container-input'>
-            <label>Imagens</label>
-            <input
-                 className='inputs-Crianuncio'
-              type="file"
-              multiple
-              onChange={(e) => setImagens(e.target.files)}
-            />
-          </div>
 
           <div className='container-input'>
             <label>Título do Anúncio</label>
@@ -231,7 +234,7 @@ function CriarAnuncio() {
             <input
               type="text"
               className='inputs-Crianuncio'
-              placeholder="Ex: 88000000"
+              placeholder="Ex: 88000-000"
               value={cep}
               onChange={(e) => setCep(e.target.value)}
               onBlur={buscarCep}

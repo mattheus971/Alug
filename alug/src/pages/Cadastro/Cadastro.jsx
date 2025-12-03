@@ -1,4 +1,3 @@
-import AlugImg from '../../components/image/AlugImag.png';
 import { Link } from 'react-router-dom';
 import { useState } from 'react'
 import axios from 'axios'
@@ -50,7 +49,7 @@ function Cadastro() {
     <div className='corpo-cadastro'>
 
       <div className='container-esquerda'>
-      <img src={AlugImg} alt="Logo Alug" className="logo" />
+      <img src="./image/AlugImag.png" alt="Logo Alug" className="logo" />
       </div>
 
       <div className='container-direita'>

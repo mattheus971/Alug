@@ -60,7 +60,7 @@ app.post('/usuario', async (req, res) => {
     try {
         const [result] = await pool.query(
             'INSERT INTO usuario (nome, email, telefone, senha,url_imagem) VALUES (?, ?, ?, ?, ?)',
-            [nome, email, telefone, senha,  url_imagem]
+            [nome, email, telefone, senha, url_imagem]
         );
 
         const [novoUsuario] = await pool.query(
@@ -83,7 +83,7 @@ app.put('/usuario/:id', async (req, res) => {
     try {
         await pool.query(
             'UPDATE usuario SET nome=?, email=?, telefone=?, senha=?, url_imagem=? WHERE id_usuario=?',
-            [nome, email, telefone, senha,  url_imagem, id]
+            [nome, email, telefone, senha, url_imagem, id]
         );
 
         const [usuarioAtualizado] = await pool.query(
@@ -120,8 +120,8 @@ app.delete('/usuario/:id', async (req, res) => {
 // IMÓVEIS
 
 app.get('/imoveis', async (req, res) => {
-  try {
-    const [rows] = await pool.query(`
+    try {
+        const [rows] = await pool.query(`
       SELECT i.*, img.url_imagem AS imagem
       FROM imoveis i
       LEFT JOIN imagens_imoveis img
@@ -132,11 +132,11 @@ app.get('/imoveis', async (req, res) => {
           ORDER BY id_imagem ASC LIMIT 1
         )
     `);
-    res.json(rows);
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ error: 'Erro ao buscar imóveis' });
-  }
+        res.json(rows);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ error: 'Erro ao buscar imóveis' });
+    }
 });
 
 
@@ -158,6 +158,22 @@ app.get('/imoveis/:id', async (req, res) => {
         res.status(500).json({ error: 'Erro ao buscar imóvel' });
     }
 });
+// Rota para pegar anúncios de um usuário específico
+app.get('/imoveis/usuario/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const [rows] = await pool.query(
+            'SELECT * FROM imoveis WHERE usuario_id = ?',
+            [id]
+        );
+
+        res.json(rows);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao buscar anúncios' });
+    }
+});
+
 
 app.post('/imoveis', async (req, res) => {
     const {
@@ -165,6 +181,8 @@ app.post('/imoveis', async (req, res) => {
         mobilia, numero_garagem, estado, cidade, bairro, rua,
         numero, cep, descricao, preco, usuario_id
     } = req.body;
+
+    console.log("Usuário recebido:", usuario_id);
 
     try {
         const [result] = await pool.query(
@@ -176,7 +194,6 @@ app.post('/imoveis', async (req, res) => {
             ]
         );
 
-
         const [novoImovel] = await pool.query(
             'SELECT * FROM imoveis WHERE id_imoveis = ?',
             [result.insertId]
@@ -185,10 +202,11 @@ app.post('/imoveis', async (req, res) => {
         res.status(201).json(novoImovel[0]);
 
     } catch (err) {
-        console.log(err);
+        console.error("Erro ao inserir imóvel:", err.sqlMessage);
         res.status(500).json({ error: 'Erro ao cadastrar imóvel' });
     }
 });
+
 
 app.put('/imoveis/:id', async (req, res) => {
     const { id } = req.params;
@@ -243,31 +261,33 @@ app.delete('/imoveis/:id', async (req, res) => {
 
 // IMAGENS 
 
-app.post('/imagens', upload.single("url_imagem"), async (req, res) => {
-    const { imovel_id } = req.body;
+app.post('/imagens', async (req, res) => {
+  const { imovel_id } = req.body;
+  const arquivos = req.files; // supondo que use multer
 
-    if (!req.file) return res.status(400).json({ error: "Nenhuma imagem enviada" });
+  // Contar quantas imagens já existem para este imóvel
+  const [resultado] = await db.query(
+    'SELECT COUNT(*) as total FROM imagens WHERE imovel_id = ?',
+    [imovel_id]
+  );
 
-    const url_imagem = "/uploads/" + req.file.filename;
+  const totalAtual = resultado[0].total;
 
-    try {
-        const [result] = await pool.query(
-            'INSERT INTO imagens_imoveis (imovel_id, url_imagem) VALUES (?, ?)',
-            [imovel_id, url_imagem]
-        );
+  if (totalAtual + arquivos.length > 4) {
+    return res.status(400).json({ erro: 'Máximo de 4 imagens por imóvel' });
+  }
 
-        const [novaImagem] = await pool.query(
-            'SELECT * FROM imagens_imoveis WHERE id_imagem = ?',
-            [result.insertId]
-        );
+  // Aqui você salva as imagens normalmente
+  for (const arquivo of arquivos) {
+    await db.query(
+      'INSERT INTO imagens (imovel_id, url_imagem) VALUES (?, ?)',
+      [imovel_id, arquivo.filename]
+    );
+  }
 
-        res.status(201).json(novaImagem[0]);
-
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({ error: 'Erro ao adicionar imagem' });
-    }
+  res.json({ mensagem: 'Imagens cadastradas com sucesso!' });
 });
+
 
 app.get('/imagens', async (req, res) => {
     try {
