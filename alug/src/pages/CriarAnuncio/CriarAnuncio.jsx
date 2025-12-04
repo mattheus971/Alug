@@ -390,3 +390,138 @@ export default CriarAnuncio;
 
 //   )
 // }
+
+
+
+
+// .wrapper-anuncio {
+//     display: flex;
+//     width: 100%;
+//     justify-content: center;
+// }
+
+
+// .cntnr-direita-infos-anuncio {
+//     width: 40%;
+//     padding: 10px;
+//     box-sizing: border-box;
+//     display: flex;
+//     justify-content: center;
+// }
+
+// .cntnr-esquerda-infos-anuncio {
+//     display: flex;
+//     justify-content: center;
+//     padding: 20px;
+// }
+
+// .cntnr-esquerda-infos-anuncio {
+//     background-color: rgb(255, 255, 255);
+//     display: flex;
+//     gap: 10px;
+//     width: 40%;
+// }
+
+// .cntnr-direita-infos-anuncio {
+//     background-color: rgb(255, 255, 255);
+// }
+
+// .containerpai-inputs-fotos {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 20px;
+//     justify-content: center;
+//     align-items: center;
+
+// }
+
+// .container-input-foto {
+//     background-color: rgb(0, 89, 255);
+//     width: 300px;
+//     height: 300px;
+//     aspect-ratio: 1;
+//     border-radius: 8px;
+// }
+
+
+
+
+// .linha-um {
+//     display: flex;
+//     flex-direction: row;
+//     gap: 20px;
+
+// }
+
+// .linha-dois {
+//     display: flex;
+//     flex-direction: row;
+//     gap: 20px;
+// }
+
+// .form-inputs-criar-anuncio {
+//     width: 100%;
+//     min-height: 300px;
+//     background-color: white;
+//     border-radius: 8px;
+// }
+
+// .form-inputs-criar-anuncio {
+//     display: flex;
+//     flex-direction: column;
+//     gap: 20px;
+//     align-items: center;
+// }
+
+// .ctnr-zxlj {
+//     display: flex;
+//     flex-direction: column;
+//     width: 100%;
+//     gap: 4px;
+// }
+
+// .ctnr-zxlj input {
+//     border: solid 1px rgb(184, 184, 184);
+//     border-radius: 8px;
+//     padding: 8px;
+// }
+
+// .ctnr-zxlj textarea {
+//     border: solid 1px rgb(184, 184, 184);
+//     width: 100%;
+//     max-width: 100%;
+//     border-radius: 8px;
+//     padding: 12px;
+// }
+
+// @media (max-width: 768px) {
+
+//     .wrapper-anuncio {
+//         flex-direction: column;
+//     }
+
+//     .cntnr-esquerda-infos-anuncio {
+//         background-color: rgb(255, 255, 255);
+//         display: flex;
+//         gap: 10px;
+//         width: 100%;
+//     }
+
+//     .cntnr-direita-infos-anuncio{
+//         width: 100%;
+//         padding: 20px;
+//     }
+
+//     .container-input-foto {
+//         background-color: rgb(0, 89, 255);
+//         width: 170px;
+//         height: 170px;
+//         aspect-ratio: 1;
+//     }
+
+//     .form-inputs-criar-anuncio {
+//         width: 100%;
+//     }
+
+
+// }
