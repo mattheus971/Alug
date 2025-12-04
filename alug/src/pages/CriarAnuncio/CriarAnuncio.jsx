@@ -1,48 +1,39 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import React from 'react';
-import './CriarAnuncio.css';
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import { GlobalContext } from "../../context/GlobalContext.jsx";
+import "./CriarAnuncio.css";
 
 function CriarAnuncio() {
-
-  const [titulo, setTitulo] = useState('');
-  const [tipo, setTipo] = useState('');
-  const [area, setArea] = useState('');
-  const [quartos, setQuartos] = useState('');
-  const [banheiros, setBanheiros] = useState('');
-  const [mobilia, setMobilia] = useState('');
-  const [numeroGaragem, setNumeroGaragem] = useState('');
-  const [estado, setEstado] = useState('');
-  const [cidade, setCidade] = useState('');
-  const [bairro, setBairro] = useState('');
-  const [rua, setRua] = useState('');
-  const [numero, setNumero] = useState('');
-  const [cep, setCep] = useState('');
-  const [descricao, setDescricao] = useState('');
-  const [preco, setPreco] = useState('');
-  const [mensagem, setMensagem] = useState('');
+  const [titulo, setTitulo] = useState("");
+  const [tipo, setTipo] = useState("");
+  const [area, setArea] = useState("");
+  const [quartos, setQuartos] = useState("");
+  const [banheiros, setBanheiros] = useState("");
+  const [mobilia, setMobilia] = useState("");
+  const [numeroGaragem, setNumeroGaragem] = useState("");
+  const [estado, setEstado] = useState("");
+  const [cidade, setCidade] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [rua, setRua] = useState("");
+  const [numero, setNumero] = useState("");
+  const [cep, setCep] = useState("");
+  const [descricao, setDescricao] = useState("");
+  const [preco, setPreco] = useState("");
+  const [mensagem, setMensagem] = useState("");
   const [imagens, setImagens] = useState([]);
 
-
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const userLogged = localStorage.getItem("usuario")
-      ? JSON.parse(localStorage.getItem("usuario"))
-      : null;
-    setUser(userLogged);
-  }, []);
+  const { usuario } = useContext(GlobalContext); // pega o usuário do Context
 
   const buscarCep = async () => {
     if (cep.length !== 9) {
-      alert('Digite um CEP válido');
+      alert("Digite um CEP válido");
       return;
     }
 
     try {
       const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
       if (response.data.erro) {
-        alert('CEP não encontrado');
+        alert("CEP não encontrado");
         return;
       }
 
@@ -50,61 +41,59 @@ function CriarAnuncio() {
       setBairro(response.data.bairro);
       setCidade(response.data.localidade);
       setEstado(response.data.uf);
-
     } catch (error) {
-      alert('Erro ao buscar o CEP');
+      alert("Erro ao buscar o CEP");
       console.error(error);
     }
   };
+
   const CriarAnuncioFunc = async (event) => {
     event.preventDefault();
 
-    const userLogged = localStorage.getItem("usuario")
-      ? JSON.parse(localStorage.getItem("usuario"))
-      : null;
+    if (!usuario) {
+      alert("Faça login antes de criar um anúncio");
+      return;
+    }
 
-    if (!userLogged) {
-      alert('Faça login antes de criar um anúncio');
-    } else {
-      try {
-        const imovelResponse = await axios.post('http://localhost:3000/imoveis', {
-          titulo,
-          tipo,
-          area,
-          quartos,
-          banheiros,
-          mobilia,
-          numero_garagem: numeroGaragem,
-          estado,
-          cidade,
-          bairro,
-          rua,
-          numero,
-          cep,
-          descricao,
-          preco,
-          usuario_id: userLogged.id_usuario,
+    try {
+      const imovelResponse = await axios.post("http://localhost:3000/imoveis", {
+        titulo,
+        tipo,
+        area,
+        quartos,
+        banheiros,
+        mobilia,
+        numero_garagem: numeroGaragem,
+        estado,
+        cidade,
+        bairro,
+        rua,
+        numero,
+        cep,
+        descricao,
+        preco,
+        usuario_id: usuario.id_usuario, // pega do Context
+      });
+
+      const imovelId = imovelResponse.data.id_imoveis;
+
+      for (let i = 0; i < imagens.length; i++) {
+        const formData = new FormData();
+        formData.append("imovel_id", imovelId);
+        formData.append("url_imagem", imagens[i]);
+
+        await axios.post("http://localhost:3000/imagens", formData, {
+          headers: { "Content-Type": "multipart/form-data" },
         });
-
-        const imovelId = imovelResponse.data.id_imoveis;
-
-        for (let i = 0; i < imagens.length; i++) {
-          const formData = new FormData();
-          formData.append('imovel_id', imovelId);
-          formData.append('url_imagem', imagens[i]);
-
-          await axios.post('http://localhost:3000/imagens', formData, {
-            headers: { 'Content-Type': 'multipart/form-data' },
-          });
-        }
-
-        setMensagem('✅ Imóvel cadastrado com sucesso!');
-      } catch (error) {
-        console.error(error);
-        setMensagem('❌ Erro ao cadastrar imóvel');
       }
+
+      setMensagem("✅ Imóvel cadastrado com sucesso!");
+    } catch (error) {
+      console.error(error);
+      setMensagem("❌ Erro ao cadastrar imóvel");
     }
   };
+
 
 
 
@@ -143,7 +132,6 @@ function CriarAnuncio() {
     ))}
   </div>
 </div>
-
 
           <div className='container-input'>
             <label>Título do Anúncio</label>
@@ -322,3 +310,83 @@ function CriarAnuncio() {
 }
 
 export default CriarAnuncio;
+
+
+
+
+
+
+
+
+
+
+
+//   return (
+//     <>
+//       <Cabecalho />
+//       <div className='wrapper-anuncio'>
+
+
+//         <div className='cntnr-esquerda-infos-anuncio'>
+//           <div className='containerpai-inputs-fotos'>
+
+//             <div className='linha-um'>
+//               <div className="container-input-foto"></div>
+//               <div className="container-input-foto"></div>
+//             </div>
+
+//             <div className='linha-dois'>
+//               <div className="container-input-foto"></div>
+//               <div className="container-input-foto"></div>
+//             </div>
+
+//           </div>
+//         </div>
+
+//         <div className='cntnr-direita-infos-anuncio'>
+//           <form className='form-inputs-criar-anuncio'>
+            
+//             <div className='ctnr-zxlj'>
+//               <label htmlFor="titulo-anuncio">Titulo do Anuncio</label>
+//               <input
+//               type="text"
+//               className='inputs-Crianuncio'
+//               placeholder="Casa na Frente da Praia"
+//               value={titulo}
+//               onChange={(e) => setTitulo(e.target.value)}
+//               required
+//               />
+//             </div>
+
+//             <div className='ctnr-zxlj' >
+//               <label htmlFor="titulo-anuncio">Descrição</label>
+//               <textarea type="text" />
+//             </div>
+
+//             <div className='ctnr-zxlj' >
+//               <label htmlFor="titulo-anuncio">Titulo do anuncio</label>
+//               <input type="text" />
+//             </div>
+
+//             <div className='ctnr-zxlj' >
+//               <label htmlFor="titulo-anuncio">Tipo do imóvel</label>
+//               <input type="text" />
+//             </div>
+
+//             <div className='ctnr-zxlj' >
+//               <label htmlFor="titulo-anuncio">Tipo do imóvel</label>
+//               <input type="text" />
+//             </div>
+
+//             <div className='ctnr-zxlj' >
+//               <label htmlFor="titulo-anuncio">Tipo do imóvel</label>
+//               <input type="text" />
+//             </div>
+
+//           </form>
+//         </div>
+//       </div>
+//     </>
+
+//   )
+// }

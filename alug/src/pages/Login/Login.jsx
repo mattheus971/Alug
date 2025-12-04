@@ -1,36 +1,34 @@
-import { Link } from 'react-router-dom';
-import { useState } from 'react'
-import axios from 'axios'
-import React from 'react'
-import './Login.css'
+import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useState } from "react";
+import { GlobalContext } from "../../context/GlobalContext.jsx";
+import axios from 'axios';
+import React from 'react';
+import './Login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [mensagem, setMensagem] = useState('');
 
+  const navigate = useNavigate();
+ const { usuario, setUsuario } = useContext(GlobalContext);
 
 
-  const Logar = async (event) => {
+
+
+  const logar = async (event) => {
     event.preventDefault();
 
-    
-    
     try {
       const response = await axios.post('http://localhost:3000/login', {
         email,
         senha
       });
-      
+
       setMensagem(response.data.message);
+      setUsuario(response.data.usuario);
       alert("Usuario logado!")
-      
-      localStorage.setItem("usuario", JSON.stringify(response.data.usuario));
-
-
-      window.location.href = "/ ";
-
-
+      navigate('/')
 
     } catch (error) {
       if (error.response) {
@@ -50,13 +48,14 @@ function Login() {
       </div>
 
       <div className='container-direita'>
-        <form onSubmit={Logar} className='formulario-login'>
+        <form onSubmit={logar} className='formulario-login'>
           <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
           <div className='container-input'>
             <label className='labels-cadastro'>E-mail</label>
             <input
               type="email"
               className='inputs-login'
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
@@ -66,13 +65,16 @@ function Login() {
             <input
               type="password"
               className='inputs-login'
+              value={senha}
               onChange={(e) => setSenha(e.target.value)}
             />
           </div>
 
           <button type="submit" className='botao-criarconta'>Entrar</button>
 
-          <Link to="/cadastro" className='link-cadastro-login'>Ainda não tenho conta</Link>
+          <Link to="/cadastro" className='link-cadastro-login'>
+          Ainda não tenho conta
+            </Link>
 
         </form>
 

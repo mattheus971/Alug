@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react'
 import axios from 'axios'
 import React from 'react'
@@ -12,6 +12,8 @@ function Cadastro() {
   const [dataNascimento, setCadDataNasc] = useState('')
   const [urlImagem, setCadUrlImagem] = useState('')
   const [mensagem, setMensagem] = useState('')
+
+  const navigate = useNavigate()
 
   const Cadastrar = async (event) => {
     event.preventDefault()
@@ -29,7 +31,6 @@ function Cadastro() {
       setMensagem('✅ Usuário cadastrado com sucesso!')
       alert("Usuario ")
 
-      window.location.href = "/cadastro ";
 
       setCadNome('')
       setCadEmail('')
@@ -37,6 +38,8 @@ function Cadastro() {
       setCadTelefone('')
       setCadDataNasc('')
       setCadUrlImagem('')
+
+      navigate('/login')
 
 
     } catch (error) {
@@ -49,12 +52,12 @@ function Cadastro() {
     <div className='corpo-cadastro'>
 
       <div className='container-esquerda'>
-      <img src="./image/AlugImag.png" alt="Logo Alug" className="logo" />
+        <img src="./image/AlugImag.png" alt="Logo Alug" className="logo" />
       </div>
 
       <div className='container-direita'>
         <form onSubmit={Cadastrar} className='formulario-cadastro'>
-        <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
+          <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
           <div className='container-input'>
             <label className='labels-cadastro'>Nome</label>
             <input
@@ -76,6 +79,27 @@ function Cadastro() {
           </div>
 
           <div className='container-input'>
+            <label className='labels-cadastro'>Telefone</label>
+            <input
+              type="tel"
+              className='inputs-cadastro'
+              value={telefoneCad}
+              onChange={(e) => setCadTelefone(e.target.value)}
+            />
+          </div>
+
+          
+          <div className='container-input'>
+            <label className='labels-cadastro'>Senha</label>
+            <input
+              type="date" 
+              className='inputs-cadastro'
+              value={dataNascimento}
+              onChange={(e) => setCadDataNasc(e.target.value)}
+            />
+          </div>
+
+          <div className='container-input'>
             <label className='labels-cadastro'>Senha</label>
             <input
               type="password"
@@ -84,6 +108,7 @@ function Cadastro() {
               onChange={(e) => setCadSenha(e.target.value)}
             />
           </div>
+
 
           <button className='botao-criarconta' type="submit">Criar conta</button>
 

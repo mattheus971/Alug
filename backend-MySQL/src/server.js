@@ -56,11 +56,11 @@ app.get('/usuario/:id', async (req, res) => {
 });
 
 app.post('/usuario', async (req, res) => {
-    const { nome, email, telefone, senha, url_imagem } = req.body;
+    const { nome, email, telefone, data_nascimento, senha, url_imagem } = req.body;
     try {
         const [result] = await pool.query(
-            'INSERT INTO usuario (nome, email, telefone, senha,url_imagem) VALUES (?, ?, ?, ?, ?)',
-            [nome, email, telefone, senha, url_imagem]
+            'INSERT INTO usuario (nome, email, telefone, data_nascimento, senha, url_imagem) VALUES (?, ?, ?, ?, ?, ?)',
+            [nome, email, telefone, data_nascimento, senha, url_imagem]
         );
 
         const [novoUsuario] = await pool.query(
@@ -78,12 +78,12 @@ app.post('/usuario', async (req, res) => {
 
 app.put('/usuario/:id', async (req, res) => {
     const { id } = req.params;
-    const { nome, email, telefone, senha, url_imagem } = req.body;
+    const { nome, email, telefone, data_nascimento, senha, url_imagem } = req.body;
 
     try {
         await pool.query(
-            'UPDATE usuario SET nome=?, email=?, telefone=?, senha=?, url_imagem=? WHERE id_usuario=?',
-            [nome, email, telefone, senha, url_imagem, id]
+            'UPDATE usuario SET nome=?, email=?, telefone=?, data_nascimento=?, senha=?, url_imagem=? WHERE id_usuario=?',
+            [nome, email, telefone, data_nascimento, senha, url_imagem, id]
         );
 
         const [usuarioAtualizado] = await pool.query(

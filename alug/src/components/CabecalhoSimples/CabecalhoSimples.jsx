@@ -4,7 +4,7 @@ import './CabecalhoSimples.css'
 function CabecalhoSimples() {
   return (
     <div className="container-cabecalho-simples">
-      <img src="" alt="Logo" />
+      {/* <img src="" alt="Logo" /> */}
     </div>
   )
 }
