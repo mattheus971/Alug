@@ -1,7 +1,10 @@
 import './InformacoesAnuncio.css'
 import Cabecalho from '../../components/Cabecalho/Cabecalho'
+import { useParams } from "react-router-dom";
+
 
 function InformacoesAnuncio() {
+  const { id} = useParams();
   return (
     <>
       <Cabecalho />

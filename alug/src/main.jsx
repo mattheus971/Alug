@@ -6,10 +6,10 @@ import { GlobalContextProvider } from "./context/GlobalContext.jsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
-    <React.StrictMode>
-        <GlobalContextProvider>
-            <RouterProvider router = {router} />
-        </GlobalContextProvider>
-    </React.StrictMode>
+  <React.StrictMode>
+    <GlobalContextProvider>
+      <RouterProvider router={router} />
+    </GlobalContextProvider>
+  </React.StrictMode>
 );
 

@@ -26,10 +26,11 @@ function Login() {
       });
 
       setMensagem(response.data.message);
-      setUsuario(response.data.usuario);
+      const usuarioRecebido = response.data.usuario ?? response.data;
+      setUsuario(usuarioRecebido);
+      localStorage.setItem('usuario', JSON.stringify(usuarioRecebido));
       alert("Usuario logado!")
       navigate('/')
-
     } catch (error) {
       if (error.response) {
         setMensagem(error.response.data.message || 'Erro ao fazer login');

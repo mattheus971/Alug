@@ -158,7 +158,6 @@ app.get('/imoveis/:id', async (req, res) => {
         res.status(500).json({ error: 'Erro ao buscar imóvel' });
     }
 });
-// Rota para pegar anúncios de um usuário específico
 app.get('/imoveis/usuario/:id', async (req, res) => {
     const { id } = req.params;
     try {
@@ -263,9 +262,8 @@ app.delete('/imoveis/:id', async (req, res) => {
 
 app.post('/imagens', async (req, res) => {
   const { imovel_id } = req.body;
-  const arquivos = req.files; // supondo que use multer
+  const arquivos = req.files; 
 
-  // Contar quantas imagens já existem para este imóvel
   const [resultado] = await db.query(
     'SELECT COUNT(*) as total FROM imagens WHERE imovel_id = ?',
     [imovel_id]
@@ -277,7 +275,6 @@ app.post('/imagens', async (req, res) => {
     return res.status(400).json({ erro: 'Máximo de 4 imagens por imóvel' });
   }
 
-  // Aqui você salva as imagens normalmente
   for (const arquivo of arquivos) {
     await db.query(
       'INSERT INTO imagens (imovel_id, url_imagem) VALUES (?, ?)',
@@ -335,23 +332,37 @@ app.delete('/imagens/:id', async (req, res) => {
 // LOGIN
 
 app.post('/login', async (req, res) => {
-    const { email, senha } = req.body;
+  const { email, senha } = req.body;
 
-    try {
-        const [rows] = await pool.query(
-            'SELECT * FROM usuario WHERE email = ? AND senha = ?',
-            [email, senha]
-        );
+  try {
+    const [rows] = await pool.query(
+      'SELECT * FROM usuario WHERE email = ? AND senha = ?',
+      [email, senha]
+    );
 
-        if (rows.length === 0)
-            return res.status(401).json({ message: 'E-mail ou senha incorretos' });
-
-        res.json({ message: 'Login bem-sucedido', usuario: rows[0] });
-
-    } catch {
-        res.status(500).json({ error: 'Erro ao tentar fazer login' });
+    if (rows.length === 0) {
+      return res.status(401).json({ message: 'Email ou senha incorretos' });
     }
+
+    const usuario = rows[0];
+
+    res.json({
+      message: 'Login realizado com sucesso!',
+      usuario: {
+        id: usuario.id_usuario,
+        nome: usuario.nome,
+        email: usuario.email,
+        senha: usuario.senha,
+        telefone: usuario.telefone,
+        dataNascimento: usuario.data_nascimento
+      }
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Erro ao fazer login' });
+  }
 });
+
 
 
 // SERVIDOR

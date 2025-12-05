@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CardAnuncio from "../../components/CardAnuncio/CardAnuncio";
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [imoveis, setImoveis] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchImoveis = async () => {
@@ -22,6 +24,7 @@ function Home() {
   return (
     <div className="home-container">
       <Cabecalho />
+      
       {imoveis.map((imovel) => (
         <CardAnuncio
           key={imovel.id_imoveis}
@@ -29,12 +32,11 @@ function Home() {
             titulo: imovel.titulo,
             tipo: imovel.tipo,
             preco: imovel.preco,
-            imagem: imovel.imagem 
+            imagem: imovel.imagem
           }}
-          onClick={() => console.log("Clicou no imóvel", imovel.id_imoveis)}
+          onClick={() => navigate(`/informacoes-anuncio/${imovel.id_imoveis}`)}
         />
       ))}
-
     </div>
   );
 }
