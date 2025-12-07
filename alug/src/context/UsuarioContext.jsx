@@ -1,9 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-export const GlobalContext = createContext();
+export const UsuarioContext = createContext();
 
-export const GlobalContextProvider = ({ children }) => {
+export const UsuarioContextProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(() => {
     try {
       const saved = localStorage.getItem("usuario");
@@ -61,8 +61,8 @@ export const GlobalContextProvider = ({ children }) => {
   };
 
   return (
-    <GlobalContext.Provider value={{ usuario, setUsuario, loadingUsuario, refreshUsuario: fetchUsuarioById, logout }}>
+    <UsuarioContext.Provider value={{ usuario, setUsuario, loadingUsuario, refreshUsuario: fetchUsuarioById, logout }}>
       {children}
-    </GlobalContext.Provider>
+    </UsuarioContext.Provider>
   );
 };

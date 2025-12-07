@@ -1,0 +1,64 @@
+/* GARANTE QUE O BLOCO DA ESQUERDA NÃO FIQUE ESTICADO */
+.cntnr-esquerda-infos-anuncio {
+  width: 350px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: flex-start !important;
+}
+
+/* GRID DAS IMAGENS – AGORA FUNCIONA 100% */
+.containerpai-inputs-fotos {
+  width: 100% !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, 1fr) !important;
+
+  column-gap: 25px !important;
+  row-gap: 20px !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  margin-top: 75px !important;  /* DESCE OS QUADRADOS */
+}
+
+/* QUADRADOS */
+.container-input-foto {
+  width: 100% !important;
+  aspect-ratio: 1 / 1 !important;
+  background: #b7d4ff !important;
+  border-radius: 10px !important;
+  border: 2px dashed #0a4da6 !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  cursor: pointer !important;
+
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+/* IMAGEM */
+.container-input-foto img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+/* BOTÃO EXCLUIR */
+.btn-excluir-img {
+  position: absolute !important;
+  top: 6px !important;
+  right: 6px !important;
+  width: 26px !important;
+  height: 26px !important;
+  background: red !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  z-index: 10 !important;
+}

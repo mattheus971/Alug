@@ -29,7 +29,6 @@ function Cadastro() {
       })
 
       setMensagem('✅ Usuário cadastrado com sucesso!')
-      alert("Usuario ")
 
 
       setCadNome('')

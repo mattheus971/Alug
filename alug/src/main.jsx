@@ -2,14 +2,14 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
 import router from "./router/router.jsx"; 
-import { GlobalContextProvider } from "./context/GlobalContext.jsx";
+import { UsuarioContextProvider } from "./context/UsuarioContext.jsx";
 import "./index.css";
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <GlobalContextProvider>
+    <UsuarioContextProvider>
       <RouterProvider router={router} />
-    </GlobalContextProvider>
+    </UsuarioContextProvider>
   </React.StrictMode>
 );
 

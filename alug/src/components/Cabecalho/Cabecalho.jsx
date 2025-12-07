@@ -1,21 +1,46 @@
-import AvatarUsuario from '../AvatarUsuario/AvatarUsuario'
-import CampoPesquisaCabecalho from '../CampoPesquisaCabecalho/CampoPesquisaCabecalho'
-import './Cabecalho.css'
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import AvatarUsuario from '../AvatarUsuario/AvatarUsuario';
+import CampoPesquisaCabecalho from '../CampoPesquisaCabecalho/CampoPesquisaCabecalho';
+import { UsuarioContext } from '../../context/UsuarioContext.jsx';
+import './Cabecalho.css';
 
 function Cabecalho() {
+  const { usuarioLogado } = useContext(UsuarioContext);
+  const navigate = useNavigate();
+
+  const criarAnuncio = () => {
+    if (usuarioLogado) {
+      navigate('/criar-anuncio');
+    } else {
+      navigate('/login');
+    }
+  };
+
+  const acessarPerfil = () => {
+    if (usuarioLogado) {
+      navigate('/minhas-informacoes'); // redireciona pro perfil
+    } else {
+      navigate('/login'); // se não estiver logado, vai pro login
+    }
+  };
+
   return (
     <div className="container-cabecalho">
-      <img src="" alt="Logo" />
+      <img src="./image/AlugLogo.png" alt="" />
 
       <CampoPesquisaCabecalho />
 
       <div className='container-criaranuncio-avatar'>
-        <button className='botao-criaranuncio' >Criar anúncio</button>
-        <AvatarUsuario />
+        <button className='botao-criaranuncio' onClick={criarAnuncio}>
+          Criar anúncio
+        </button>
+        <div onClick={acessarPerfil} style={{ cursor: 'pointer' }}>
+          <AvatarUsuario />
+        </div>
       </div>
-
     </div>
-  )
+  );
 }
 
-export default Cabecalho
+export default Cabecalho;

@@ -3,6 +3,7 @@ import axios from "axios";
 import CardAnuncio from "../../components/CardAnuncio/CardAnuncio";
 import Cabecalho from "../../components/Cabecalho/Cabecalho";
 import { useNavigate } from "react-router-dom";
+import "./Home.css"; // IMPORTANTE
 
 function Home() {
   const [imoveis, setImoveis] = useState([]);
@@ -22,22 +23,26 @@ function Home() {
   }, []);
 
   return (
-    <div className="home-container">
+    <>
       <Cabecalho />
-      
-      {imoveis.map((imovel) => (
-        <CardAnuncio
-          key={imovel.id_imoveis}
-          dados={{
-            titulo: imovel.titulo,
-            tipo: imovel.tipo,
-            preco: imovel.preco,
-            imagem: imovel.imagem
-          }}
-          onClick={() => navigate(`/informacoes-anuncio/${imovel.id_imoveis}`)}
-        />
-      ))}
-    </div>
+
+      <div className="home-container">
+        {imoveis.map((imovel) => (
+          <CardAnuncio
+            key={imovel.id_imoveis}
+            dados={{
+              titulo: imovel.titulo,
+              tipo: imovel.tipo,
+              preco: imovel.preco,
+              imagem: imovel.imagem, // certo
+            }}
+            onClick={() => navigate(`/informacoes-anuncio/${imovel.id_imoveis}`)}
+          />
+
+
+        ))}
+      </div>
+    </>
   );
 }
 

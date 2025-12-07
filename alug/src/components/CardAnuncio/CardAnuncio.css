@@ -1,45 +1,62 @@
-/* CardAnuncio.css */
-
+/* Card geral */
 .card {
-  width: 250px;
+  width: 330px;                 /* AUMENTADO de 300 → 330px */
   background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 14px;          /* bordas mais modernas */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.13);
   overflow: hidden;
-  margin: 15px;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
+/* Hover elegante */
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 22px rgba(0,0,0,0.23);
 }
 
+/* Imagem */
 .card-img {
   width: 100%;
-  height: 150px;
+  height: 210px;               /* aumentei de 190 → 210 */
   object-fit: cover;
 }
 
+/* Conteúdo */
 .card-info {
-  padding: 10px 15px;
+  padding: 16px 20px;
 }
 
 .card-info h2 {
-  font-size: 1.1rem;
-  margin: 5px 0;
+  font-size: 1.35rem;          /* maior */
+  margin: 6px 0 10px 0;
   color: #333;
+  font-weight: 600;
 }
 
 .card-tipo {
-  font-size: 0.9rem;
-  color: #777;
-  margin-bottom: 5px;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
 }
 
 .card-preco {
-  font-weight: bold;
-  color: #2e8b57;
+  font-weight: 700;
+  color: #1e7f4f;
+  font-size: 1.15rem;          /* mais destaque */
+}
+
+
+
+
+/* Responsividade */
+@media (max-width: 500px) {
+  .card {
+    width: 92%;
+  }
+  
+  .card-img {
+    height: 180px;
+  }
 }
 

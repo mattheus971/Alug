@@ -10,7 +10,7 @@ const app = express();
 const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
-    password: 'senai',
+    password: '2910',
     database: 'alug',
     waitForConnections: true,
     connectionLimit: 10,
@@ -80,10 +80,20 @@ app.put('/usuario/:id', async (req, res) => {
     const { id } = req.params;
     const { nome, email, telefone, data_nascimento, senha, url_imagem } = req.body;
 
+    console.log("Recebido no PUT /usuario/:id:", req.body);
+
     try {
         await pool.query(
             'UPDATE usuario SET nome=?, email=?, telefone=?, data_nascimento=?, senha=?, url_imagem=? WHERE id_usuario=?',
-            [nome, email, telefone, data_nascimento, senha, url_imagem, id]
+            [
+              nome || "", 
+              email || "", 
+              telefone || "", 
+              data_nascimento || null, 
+              senha || "", 
+              url_imagem || null, 
+              id
+            ]
         );
 
         const [usuarioAtualizado] = await pool.query(
@@ -93,10 +103,13 @@ app.put('/usuario/:id', async (req, res) => {
 
         res.json(usuarioAtualizado[0]);
 
-    } catch {
-        res.status(500).json({ error: 'Erro ao atualizar usuário' });
+    } catch (err) {
+        console.error("Erro no PUT /usuario/:id:", err); // log real do erro
+        res.status(500).json({ error: 'Erro ao atualizar usuário', detalhes: err.message });
     }
 });
+
+
 
 app.delete('/usuario/:id', async (req, res) => {
     const { id } = req.params;
@@ -260,29 +273,41 @@ app.delete('/imoveis/:id', async (req, res) => {
 
 // IMAGENS 
 
-app.post('/imagens', async (req, res) => {
+app.post('/imagens', upload.array("url_imagem", 4), async (req, res) => {
   const { imovel_id } = req.body;
-  const arquivos = req.files; 
+  const arquivos = req.files;
 
-  const [resultado] = await db.query(
-    'SELECT COUNT(*) as total FROM imagens WHERE imovel_id = ?',
-    [imovel_id]
-  );
-
-  const totalAtual = resultado[0].total;
-
-  if (totalAtual + arquivos.length > 4) {
-    return res.status(400).json({ erro: 'Máximo de 4 imagens por imóvel' });
+  if (!arquivos || arquivos.length === 0) {
+    return res.status(400).json({ erro: 'Nenhum arquivo enviado' });
   }
 
-  for (const arquivo of arquivos) {
-    await db.query(
-      'INSERT INTO imagens (imovel_id, url_imagem) VALUES (?, ?)',
-      [imovel_id, arquivo.filename]
+  try {
+    // Contar imagens já cadastradas
+    const [resultado] = await pool.query(
+      'SELECT COUNT(*) as total FROM imagens_imoveis WHERE imovel_id = ?',
+      [imovel_id]
     );
-  }
 
-  res.json({ mensagem: 'Imagens cadastradas com sucesso!' });
+    const totalAtual = resultado[0].total;
+
+    if (totalAtual + arquivos.length > 4) {
+      return res.status(400).json({ erro: 'Máximo de 4 imagens por imóvel' });
+    }
+
+    // Inserir cada arquivo na tabela
+    for (const arquivo of arquivos) {
+      await pool.query(
+        'INSERT INTO imagens_imoveis (imovel_id, url_imagem) VALUES (?, ?)',
+        [imovel_id, arquivo.filename]
+      );
+    }
+
+    res.json({ mensagem: 'Imagens cadastradas com sucesso!' });
+
+  } catch (err) {
+    console.error("Erro ao cadastrar imagens:", err);
+    res.status(500).json({ erro: 'Erro ao cadastrar imagens' });
+  }
 });
 
 

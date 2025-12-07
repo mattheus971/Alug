@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import axios from "axios";
-import { GlobalContext } from "../../context/GlobalContext.jsx";
+import {  useNavigate } from 'react-router-dom';
+import { UsuarioContext } from "../../context/UsuarioContext.jsx";
 import "./CriarAnuncio.css";
 
 function CriarAnuncio() {
@@ -19,10 +20,11 @@ function CriarAnuncio() {
   const [cep, setCep] = useState("");
   const [descricao, setDescricao] = useState("");
   const [preco, setPreco] = useState("");
-  const [mensagem, setMensagem] = useState("");
   const [imagens, setImagens] = useState([]);
+  const [mensagem, setMensagem] = useState("");
 
-  const { usuario } = useContext(GlobalContext); // pega o usuário do Context
+  const { usuario } = useContext(UsuarioContext); 
+  const navigate = useNavigate();
 
   const buscarCep = async () => {
     if (cep.length !== 9) {
@@ -88,6 +90,7 @@ function CriarAnuncio() {
       }
 
       setMensagem("✅ Imóvel cadastrado com sucesso!");
+        navigate("/");
     } catch (error) {
       console.error(error);
       setMensagem("❌ Erro ao cadastrar imóvel");
@@ -302,7 +305,9 @@ function CriarAnuncio() {
 
           <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
 
-          <button type="submit" className='botao-criarconta'>Cadastrar Imóvel</button>
+          <button 
+          type="submit" 
+          className='botao-criarconta'>Cadastrar Imóvel</button>
         </form>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useState } from "react";
-import { GlobalContext } from "../../context/GlobalContext.jsx";
+import { UsuarioContext } from "../../context/UsuarioContext.jsx";
 import axios from 'axios';
 import React from 'react';
 import './Login.css';
@@ -11,7 +11,7 @@ function Login() {
   const [mensagem, setMensagem] = useState('');
 
   const navigate = useNavigate();
- const { usuario, setUsuario } = useContext(GlobalContext);
+ const { usuario, setUsuario } = useContext(UsuarioContext);
 
 
 
