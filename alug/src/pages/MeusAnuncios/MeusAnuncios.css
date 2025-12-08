@@ -1,29 +1,25 @@
 .meusanuncios-container {
   width: 100%;
   padding: 40px 20px;
-
-  display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 colunas no PC */
-  gap: 30px;
-  justify-items: center;
-}
-
-.usuario-logado {
-  width: 100%;
-  margin-bottom: 20px;
-  font-size: 1.2rem;
 }
 
 h1 {
-  grid-column: 1 / -1; /* título ocupa toda linha */
   text-align: center;
   margin-bottom: 25px;
   color: #333;
 }
 
-/* === CARD === */
+
+.lista-anuncios {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 30px;
+  justify-items: center;
+}
+
 .card-anuncio {
-  width: 350px; /* CARD MAIOR */
+  width: 100%; 
+  max-width: 350px; 
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 5px 12px rgba(0,0,0,0.15);
@@ -39,7 +35,7 @@ h1 {
 
 .img-anuncio {
   width: 100%;
-  height: 220px; /* imagem maior */
+  height: 220px; 
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 10px;
@@ -63,7 +59,7 @@ h1 {
   margin-top: 10px;
 }
 
-.btn-edit, .btn-delete, .btn-save, .btn-cancel {
+.btn-edit, .btn-delete {
   padding: 6px 12px;
   border: none;
   border-radius: 6px;
@@ -73,32 +69,20 @@ h1 {
 
 .btn-edit { background-color: #3498db; color: white; }
 .btn-delete { background-color: #e74c3c; color: white; }
-.btn-save { background-color: #2ecc71; color: white; }
-.btn-cancel { background-color: #95a5a6; color: white; }
 
 /* === Responsividade === */
-
-/* Tablet grande → 3 cards */
 @media (max-width: 1200px) {
-  .meusanuncios-container {
-    grid-template-columns: repeat(3, 1fr);
+  .lista-anuncios {
+    grid-template-columns: repeat(2, 1fr); 
   }
 }
 
-/* Tablet pequeno → 2 cards */
-@media (max-width: 900px) {
-  .meusanuncios-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Celular → 1 card */
 @media (max-width: 600px) {
-  .meusanuncios-container {
-    grid-template-columns: 1fr;
+  .lista-anuncios {
+    grid-template-columns: 1fr; 
   }
 
   .card-anuncio {
-    width: 90%; /* ocupa quase toda tela */
+    width: 90%; 
   }
 }

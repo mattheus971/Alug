@@ -10,9 +10,8 @@ function InformacoesUsuario() {
   const { usuario, setUsuario, logout } = useContext(UsuarioContext);
   const navigate = useNavigate();
 
-  const [campoEditando, setCampoEditando] = useState(null); // Guarda qual campo está sendo editado
+  const [campoEditando, setCampoEditando] = useState(null); 
 
-  // Salvar alteração individual
   const salvarCampo = async (campo, valor) => {
     if (!usuario) return;
 
@@ -27,7 +26,6 @@ function InformacoesUsuario() {
           : null,
       };
 
-      // Atualiza só o campo editado
       dados[campo] = valor === "" ? null : valor;
 
       console.log("Enviando dados para PUT:", dados);
@@ -46,10 +44,6 @@ function InformacoesUsuario() {
     }
   };
 
-
-
-
-  // Excluir conta
   const deletarConta = async () => {
     if (!usuario) return;
     if (!confirm("Tem certeza que deseja excluir sua conta?")) return;
@@ -66,7 +60,6 @@ function InformacoesUsuario() {
     }
   };
 
-  // Converte data para yyyy-MM-dd
   const formatarData = (data) => {
     if (!data) return "";
     return new Date(data).toISOString().split("T")[0];
@@ -77,7 +70,7 @@ function InformacoesUsuario() {
       <CabecalhoSimples />
 
       <div className="corpo-informacoes-usuario">
-      
+
 
         <div className="container-avatar-nome-usuario">
           <div className="foto-usuario"></div>
@@ -103,7 +96,6 @@ function InformacoesUsuario() {
             <p>Clique em cada campo para editar</p>
           </div>
 
-          {/* Nome */}
           <div className="campo" onClick={() => setCampoEditando("nome")}>
             <div className="cntr-lbl-inf">
               <label>{usuario?.nome}</label>
@@ -113,7 +105,6 @@ function InformacoesUsuario() {
             </div>
           </div>
 
-          {/* Email */}
           <div className="campo" onClick={() => setCampoEditando("email")}>
             <div className="cntr-lbl-inf">
               <label>{usuario?.email}</label>
@@ -123,7 +114,6 @@ function InformacoesUsuario() {
             </div>
           </div>
 
-          {/* Senha */}
           <div className="campo" onClick={() => setCampoEditando("senha")}>
             <div className="cntr-lbl-inf">
               <label>{"•".repeat(usuario?.senha?.length || 8)}</label>
@@ -133,7 +123,6 @@ function InformacoesUsuario() {
             </div>
           </div>
 
-          {/* Data de nascimento */}
           <div
             className="campo"
             onClick={() => setCampoEditando("data_nascimento")}
@@ -146,7 +135,6 @@ function InformacoesUsuario() {
             </div>
           </div>
 
-          {/* Telefone */}
           <div className="campo" onClick={() => setCampoEditando("telefone")}>
             <div className="cntr-lbl-inf">
               <label>{usuario?.telefone}</label>
@@ -156,23 +144,18 @@ function InformacoesUsuario() {
             </div>
           </div>
 
-          {/* Botão de excluir */}
+        </div>
+          <div className="container-botoes">
           <button className="btn-delete" onClick={deletarConta}>
             Excluir Conta
           </button>
-        <button
-  className="btn-delete"
-  onClick={() => {
-    logout();
-    navigate("/login");
-  }}
->
-  Sair
-</button>
+          <button className="btn-sair" onClick={() => {logout(); navigate("/login");}}>
+            Sair
+          </button>
 
-        </div>
+          </div>
+        
 
-        {/* Modal */}
         {campoEditando && (
           <ModalEdit
             campo={campoEditando}

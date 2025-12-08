@@ -6,11 +6,11 @@ import { UsuarioContext } from '../../context/UsuarioContext.jsx';
 import './Cabecalho.css';
 
 function Cabecalho() {
-  const { usuarioLogado } = useContext(UsuarioContext);
+  const { usuario } = useContext(UsuarioContext);
   const navigate = useNavigate();
 
   const criarAnuncio = () => {
-    if (usuarioLogado) {
+    if (usuario) {
       navigate('/criar-anuncio');
     } else {
       navigate('/login');
@@ -18,7 +18,7 @@ function Cabecalho() {
   };
 
   const acessarPerfil = () => {
-    if (usuarioLogado) {
+    if (usuario) {
       navigate('/minhas-informacoes'); // redireciona pro perfil
     } else {
       navigate('/login'); // se não estiver logado, vai pro login
@@ -35,7 +35,7 @@ function Cabecalho() {
         <button className='botao-criaranuncio' onClick={criarAnuncio}>
           Criar anúncio
         </button>
-        <div onClick={acessarPerfil} style={{ cursor: 'pointer' }}>
+        <div onClick={acessarPerfil}>
           <AvatarUsuario />
         </div>
       </div>

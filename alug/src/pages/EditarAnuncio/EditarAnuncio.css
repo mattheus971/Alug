@@ -1,64 +1,150 @@
-/* GARANTE QUE O BLOCO DA ESQUERDA NÃO FIQUE ESTICADO */
+.wrapper-anuncio {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  padding: 40px 20px;
+  background-color: #f5f7fa;
+  min-height: calc(100vh - 80px); 
+}
+
 .cntnr-esquerda-infos-anuncio {
-  width: 350px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  display: flex !important;
-  justify-content: center !important;
-  align-items: flex-start !important;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* GRID DAS IMAGENS – AGORA FUNCIONA 100% */
 .containerpai-inputs-fotos {
-  width: 100% !important;
-  display: grid !important;
-  grid-template-columns: repeat(2, 1fr) !important;
-
-  column-gap: 25px !important;
-  row-gap: 20px !important;
-
-  margin: 0 !important;
-  padding: 0 !important;
-
-  margin-top: 75px !important;  /* DESCE OS QUADRADOS */
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
 
-/* QUADRADOS */
 .container-input-foto {
-  width: 100% !important;
-  aspect-ratio: 1 / 1 !important;
-  background: #b7d4ff !important;
-  border-radius: 10px !important;
-  border: 2px dashed #0a4da6 !important;
-
-  display: flex !important;
-  justify-content: center !important;
-  align-items: center !important;
-  cursor: pointer !important;
-
-  position: relative !important;
-  overflow: hidden !important;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #e1eaff;
+  border-radius: 12px;
+  border: 2px dashed #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s all;
 }
 
-/* IMAGEM */
+.container-input-foto:hover {
+  background: #d0e1ff;
+  border-color: #000000;
+}
+
 .container-input-foto img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
-/* BOTÃO EXCLUIR */
 .btn-excluir-img {
-  position: absolute !important;
-  top: 6px !important;
-  right: 6px !important;
-  width: 26px !important;
-  height: 26px !important;
-  background: red !important;
-  color: white !important;
-  border: none !important;
-  border-radius: 6px !important;
-  font-size: 14px !important;
-  cursor: pointer !important;
-  z-index: 10 !important;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cntnr-direita-infos-anuncio {
+  flex: 1;
+  max-width: 600px;
+}
+
+.form-inputs-criar-anuncio {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.ctnr-zxlj {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ctnr-zxlj label {
+  font-weight: 600;
+  color: #333;
+}
+
+.ctnr-zxlj input,
+.ctnr-zxlj textarea {
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
+  transition: border 0.2s;
+}
+
+.ctnr-zxlj input:focus,
+.ctnr-zxlj textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.ctnr-zxlj textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.btn-salvar {
+  margin-top: 10px;
+  padding: 12px 20px;
+  background-color: #2C3E50;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+.btn-salvar:hover {
+  background-color: #3498db;
+}
+
+/* === RESPONSIVIDADE === */
+@media (max-width: 1100px) {
+  .wrapper-anuncio {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cntnr-esquerda-infos-anuncio,
+  .cntnr-direita-infos-anuncio {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 600px) {
+  .containerpai-inputs-fotos {
+    grid-template-columns: 1fr;
+  }
 }

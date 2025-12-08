@@ -8,6 +8,8 @@ import EditarAnuncio from "../pages/EditarAnuncio/EditarAnuncio";
 import MeusAnuncios from "../pages/MeusAnuncios/MeusAnuncios";
 import InformacoesAnuncio from "../pages/InformacoesAnuncio/InformacoesAnuncio";
 import InformacoesUsuario from "../pages/InformacoesUsuario/InformacoesUsuario";
+import Dashboard from "../pages/Dashboard/Dashboard";
+
 
 const router = createBrowserRouter([
 
@@ -18,7 +20,8 @@ const router = createBrowserRouter([
     {path: "/editar-anuncio/:id", element: <EditarAnuncio />},
     {path: "/meus-anuncios", element: <MeusAnuncios />},
     {path: "/informacoes-anuncio/:id", element: <InformacoesAnuncio />},
-    {path: "/minhas-informacoes", element: <InformacoesUsuario />}
+    {path: "/minhas-informacoes", element: <InformacoesUsuario />},
+    {path: "/dashboard", element: <Dashboard/>}
 ])
 
 export default router

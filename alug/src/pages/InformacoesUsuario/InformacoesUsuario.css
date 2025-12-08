@@ -47,7 +47,6 @@
 }
 
 .container-informacoes{
-    /* background-color: rgb(212, 212, 212); */
     min-height: 100px;
     width: 700px;
     display: flex;
@@ -97,3 +96,35 @@
 .nome-usuario-pg-infos{
     font-weight: 500;
 }
+
+.container-botoes {
+    display: flex;
+    justify-content: center; /* inicia à esquerda do quadro */
+    gap: 460px; /* espaço entre os botões */
+    width: 100%;
+    margin-top: 12px; /* distância do último campo */
+}
+
+.btn-delete {
+    background-color: #e74c3c; /* vermelho */
+    color: white;
+    height: 40px;
+    width: 120px;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-sair {
+    background-color: #3498db; /* azul */
+    color: white;
+    height: 40px;
+    width: 120px;
+    border-radius: 9px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+

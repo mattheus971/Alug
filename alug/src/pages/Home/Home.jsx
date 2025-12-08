@@ -31,13 +31,15 @@ function Home() {
           <CardAnuncio
             key={imovel.id_imoveis}
             dados={{
+              id_imoveis: imovel.id_imoveis, // importante!
               titulo: imovel.titulo,
               tipo: imovel.tipo,
               preco: imovel.preco,
-              imagem: imovel.imagem, // certo
+              imagem: imovel.imagem,
             }}
             onClick={() => navigate(`/informacoes-anuncio/${imovel.id_imoveis}`)}
           />
+
 
 
         ))}

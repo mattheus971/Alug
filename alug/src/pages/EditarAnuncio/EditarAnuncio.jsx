@@ -178,7 +178,6 @@ export default function EditarAnuncio() {
 
       <div className="wrapper-anuncio">
 
-        {/* IMAGENS */}
         <div className="cntnr-esquerda-infos-anuncio">
           <div className="containerpai-inputs-fotos">
 
@@ -191,9 +190,10 @@ export default function EditarAnuncio() {
                   {item?.tipo === "existente" && (
                     <>
                       <img
-                        src={`${API}/imagens/${item.dado.url_imagem}`}
+                        src={`${API}/uploads/${item.dado.url_imagem}`}
                         alt=""
                       />
+
                       <button
                         className="btn-excluir-img"
                         onClick={(e) => {
@@ -222,13 +222,21 @@ export default function EditarAnuncio() {
                   )}
 
                   {!item && (
-                    <input
-                      type="file"
-                      accept="image/*"
-                      style={{ display: "none" }}
-                      onChange={(e) => handleNewFiles(e.target.files)}
-                    />
+                    <>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        style={{ display: "none" }}
+                        onChange={(e) => handleNewFiles(e.target.files)}
+                      />
+                      <img
+                        src="/image/imagem.jpg"
+                        alt="Placeholder"
+                        
+                      />
+                    </>
                   )}
+
 
                 </label>
               );
@@ -237,7 +245,6 @@ export default function EditarAnuncio() {
           </div>
         </div>
 
-        {/* FORMULÁRIO */}
         <div className="cntnr-direita-infos-anuncio">
           <form className="form-inputs-criar-anuncio">
 

@@ -104,7 +104,7 @@ app.put('/usuario/:id', async (req, res) => {
         res.json(usuarioAtualizado[0]);
 
     } catch (err) {
-        console.error("Erro no PUT /usuario/:id:", err); // log real do erro
+        console.error("Erro no PUT /usuario/:id:", err);
         res.status(500).json({ error: 'Erro ao atualizar usuário', detalhes: err.message });
     }
 });
@@ -152,9 +152,8 @@ app.get('/imoveis', async (req, res) => {
     }
 });
 
-
-
 app.get('/imoveis/:id', async (req, res) => {
+    
     const { id } = req.params;
     try {
         const [rows] = await pool.query(
@@ -171,20 +170,31 @@ app.get('/imoveis/:id', async (req, res) => {
         res.status(500).json({ error: 'Erro ao buscar imóvel' });
     }
 });
-app.get('/imoveis/usuario/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const [rows] = await pool.query(
-            'SELECT * FROM imoveis WHERE usuario_id = ?',
-            [id]
-        );
 
-        res.json(rows);
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Erro ao buscar anúncios' });
-    }
+app.get('/imoveis/usuario/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [rows] = await pool.query(`
+      SELECT i.*, img.url_imagem AS imagem
+      FROM imoveis i
+      LEFT JOIN imagens_imoveis img
+        ON img.id_imagem = (
+          SELECT id_imagem
+          FROM imagens_imoveis
+          WHERE imovel_id = i.id_imoveis
+          ORDER BY id_imagem ASC
+          LIMIT 1
+        )
+      WHERE i.usuario_id = ?
+    `, [id]);
+
+    res.json(rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Erro ao buscar anúncios' });
+  }
 });
+
 
 
 app.post('/imoveis', async (req, res) => {
@@ -282,7 +292,7 @@ app.post('/imagens', upload.array("url_imagem", 4), async (req, res) => {
   }
 
   try {
-    // Contar imagens já cadastradas
+
     const [resultado] = await pool.query(
       'SELECT COUNT(*) as total FROM imagens_imoveis WHERE imovel_id = ?',
       [imovel_id]
@@ -294,7 +304,7 @@ app.post('/imagens', upload.array("url_imagem", 4), async (req, res) => {
       return res.status(400).json({ erro: 'Máximo de 4 imagens por imóvel' });
     }
 
-    // Inserir cada arquivo na tabela
+   
     for (const arquivo of arquivos) {
       await pool.query(
         'INSERT INTO imagens_imoveis (imovel_id, url_imagem) VALUES (?, ?)',
@@ -350,6 +360,83 @@ app.delete('/imagens/:id', async (req, res) => {
 
     } catch {
         res.status(500).json({ error: 'Erro ao deletar imagem' });
+    }
+});
+
+
+
+//FAVORITOS
+
+app.get('/favorito/:usuario_id', async (req, res) => {
+    const { usuario_id } = req.params;
+    try {
+        const [rows] = await pool.query(`
+            SELECT f.id_favorito, i.*
+            FROM favorito f
+            JOIN imoveis i ON f.imovel_id = i.id_imoveis
+            WHERE f.usuario_id = ?
+        `, [usuario_id]);
+
+        res.json(rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Erro ao listar favoritos' });
+    }
+});
+
+app.post('/favorito', async (req, res) => {
+    const { usuario_id, imovel_id } = req.body;
+
+    try {
+        const [rows] = await pool.query(
+            'SELECT * FROM favorito WHERE usuario_id = ? AND imovel_id = ?',
+            [usuario_id, imovel_id]
+        );
+
+        if (rows.length > 0) return res.status(400).json({ error: 'Já favoritado' });
+
+      await pool.query(
+  'INSERT INTO favorito (usuario_id, imovel_id) VALUES (?, ?)',
+  [usuario_id, imovel_id]
+);
+
+
+        res.json({ message: 'Favorito adicionado com sucesso' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Erro ao adicionar favorito' });
+    }
+});
+
+app.delete('/favorito', async (req, res) => {
+    const { usuario_id, imovel_id } = req.body;
+
+    try {
+        await pool.query(
+            'DELETE FROM favorito WHERE usuario_id = ? AND imovel_id = ?',
+            [usuario_id, imovel_id]
+        );
+
+        res.json({ message: 'Favorito removido com sucesso' });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Erro ao remover favorito' });
+    }
+});
+
+app.get('/favorito/:usuario_id/:imovel_id', async (req, res) => {
+    const { usuario_id, imovel_id } = req.params;
+
+    try {
+        const [rows] = await pool.query(
+            'SELECT * FROM favorito WHERE usuario_id = ? AND imovel_id = ?',
+            [usuario_id, imovel_id]
+        );
+
+        res.json({ favoritado: rows.length > 0 });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Erro ao verificar favorito' });
     }
 });
 

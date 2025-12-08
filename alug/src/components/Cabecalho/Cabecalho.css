@@ -29,6 +29,6 @@
     cursor: pointer;
 }
 .container-cabecalho img {
-     height: 200px; /* altura do logo dentro do cabeçalho */
-    object-fit: contain; /* mantém a proporção da imagem */
+     height: 200px; 
+    object-fit: contain; 
 }

@@ -24,6 +24,9 @@ function MeusAnuncios() {
     return <div className="meusanuncios-container">Nenhum usuário logado.</div>;
 
   const deletarAnuncio = async (id) => {
+    const confirmacao = window.confirm("Tem certeza que deseja deletar este anúncio?");
+    if (!confirmacao) return;
+
     try {
       await axios.delete(`http://localhost:3000/imoveis/${id}`);
       setAnuncios(anuncios.filter((a) => a.id_imoveis !== id));
@@ -33,13 +36,11 @@ function MeusAnuncios() {
     }
   };
 
+
   return (
     <>
-      <CabecalhoSimples/>
+      <CabecalhoSimples />
       <div className="meusanuncios-container">
-        <div className="usuario-logado">
-          Seja Bem Vindo! <strong>{usuario.nome}</strong>
-        </div>
 
         <h1>Meus Anúncios</h1>
 
@@ -51,7 +52,12 @@ function MeusAnuncios() {
               <div className="card-anuncio" key={item.id_imoveis}>
                 <h2>{item.titulo}</h2>
                 {item.imagem && (
-                  <img src={item.imagem} alt={item.titulo} className="img-anuncio" />
+                  <img
+                    src={item.imagem ? `http://localhost:3000/uploads/${item.imagem}` : '/image/AlugLogo.png'}
+                    alt={item.titulo}
+                    className="img-anuncio"
+                  />
+
                 )}
                 <p><strong>Tipo:</strong> {item.tipo}</p>
                 <p><strong>Cidade:</strong> {item.cidade}</p>

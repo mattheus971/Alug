@@ -7,6 +7,7 @@
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
 }
 
 /* Hover elegante */
@@ -46,17 +47,37 @@
   font-size: 1.15rem;          /* mais destaque */
 }
 
+.card .btn-favorito-grande {
+  background-color: #2C3E50 !important;
+  color: #fff !important;
+  border: none;
+  border-radius: 10px;
+  width: calc(100% - 40px);
+  margin: 10px 20px 16px 20px;
+  padding: 12px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+}
 
+.card .btn-favorito-grande:hover {
+  background-color: #151f56 !important;
+  transform: translateY(-2px);
+}
 
 
 /* Responsividade */
 @media (max-width: 500px) {
-  .card {
-    width: 92%;
+  .btn-favorito-grande {
+    width: calc(100% - 32px);
+    font-size: 0.95rem;
+    padding: 10px 0;
   }
-  
+}
+
   .card-img {
     height: 180px;
   }
-}
+
 

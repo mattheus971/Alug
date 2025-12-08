@@ -5,7 +5,7 @@ function CabecalhoSimples() {
   const navigate = useNavigate();
 
   const voltarPagina = () => {
-    navigate(-1); // volta para a página anterior
+    navigate(-1); 
   };
 
   return (
