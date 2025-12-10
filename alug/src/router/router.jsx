@@ -9,6 +9,7 @@ import MeusAnuncios from "../pages/MeusAnuncios/MeusAnuncios";
 import InformacoesAnuncio from "../pages/InformacoesAnuncio/InformacoesAnuncio";
 import InformacoesUsuario from "../pages/InformacoesUsuario/InformacoesUsuario";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import TesteDashboard from "../pages/TesteDashboard/TesteDashboard";
 
 
 const router = createBrowserRouter([
@@ -21,7 +22,8 @@ const router = createBrowserRouter([
     {path: "/meus-anuncios", element: <MeusAnuncios />},
     {path: "/informacoes-anuncio", element: <InformacoesAnuncio />},
     {path: "/minhas-informacoes", element: <InformacoesUsuario />},
-    {path: "/dashboard", element: <Dashboard/>}
+    {path: "/dashboard", element: <Dashboard/>},
+    {path: "/teste-dashboard", element: <TesteDashboard/>}
 ])
 
 export default router

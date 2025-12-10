@@ -87,9 +87,8 @@ export default function InformacoesAnuncio() {
 
     
 
-    
 
-</div>
+      </div>
 
 
         </div>

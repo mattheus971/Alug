@@ -21,4 +21,6 @@
     border-top-right-radius: 6px;
     border-bottom-right-radius: 6px;
     cursor: pointer;
+    background-color: #4A90E2;
+    color: white;
 }

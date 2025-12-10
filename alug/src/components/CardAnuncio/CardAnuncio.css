@@ -2,9 +2,6 @@
 .card {
   width: 330px;                 /* AUMENTADO de 300 → 330px */
   background-color: #fff;
-  border-top-left-radius: 14px;          /* bordas mais modernas */
-  border-top-right-radius: 14px; 
-  border-bottom-right-radius: 0px; 
   box-shadow: 0 4px 12px rgba(0,0,0,0.13);
   overflow: hidden;
   cursor: pointer;
@@ -54,7 +51,7 @@
   background-color: #4A90E2 !important;
   color: #fff !important;
   border: none;
-  border-radius: 10px;
+
   width: calc(100% - 40px);
   margin: 10px 20px 16px 20px;
   padding: 12px 0;

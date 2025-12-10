@@ -19,7 +19,8 @@
 .botao-criaranuncio{
     border: none;
     background-color: #4A90E2;
-    padding: 10px 0px;
+    padding: 8px;
+    margin-right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,4 +33,8 @@
     object-fit: contain; /* mantém a proporção da imagem */
     cursor: pointer;
 
+}
+
+.logo-simples{
+    max-width: 100px;
 }

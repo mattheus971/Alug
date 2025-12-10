@@ -51,11 +51,12 @@ function Cadastro() {
     <div className='corpo-cadastro'>
 
       <div className='container-esquerda'>
-        <img src="./image/AlugImag.png" alt="Logo Alug" className="logo" />
+        <img src="./image/-logoAlug.png" alt="Logo Alug" className="logo-alug" />
       </div>
 
       <div className='container-direita'>
         <form onSubmit={Cadastrar} className='formulario-cadastro'>
+          <h2 className='titulo-formulario-cadastro'>Crie sua conta</h2>
           <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
           <div className='container-input'>
             <label className='labels-cadastro'>Nome</label>

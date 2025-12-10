@@ -1,0 +1,76 @@
+/* Container geral */
+.container-dashboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  font-family: "Inter", sans-serif;
+  
+}
+
+/* Título */
+.titulo-dashboard {
+  font-size: 32px;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+
+.painel {
+  background-color: #3d566e;
+  width: 50%;
+  padding: 64px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+
+.linha-cards {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+
+.card-dashboard {
+  background-color: #4A90E2;
+  border: solid 1px #4A90E2;
+  flex: 1;
+  padding: 30px 20px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: white;
+  cursor: pointer
+}
+
+.card-dashboard:hover{
+  border: solid 1px #dddddd;
+}
+
+
+
+.titulo-card {
+  font-size: 15px;
+}
+
+.valor-card {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+
+.card.grande {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px 25px;
+}

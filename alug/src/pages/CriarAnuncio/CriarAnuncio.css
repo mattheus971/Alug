@@ -24,8 +24,13 @@ html, body {
   padding: 32px;
 }
 
+.logo-alug{
+  max-width: 50%;
+  cursor: pointer;
+}
+
 /* Direita (formulário) */
-.container-direita {
+.container-direita-criaranuncio {
   background-color: #C8CDD2;
   width: 60%;
   display: flex;

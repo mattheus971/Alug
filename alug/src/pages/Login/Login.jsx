@@ -44,12 +44,13 @@ function Login() {
     <div className='corpo-login'>
 
       <div className='container-esquerda'>
-        <img src="./image/AlugImag.png" alt="Logo Alug" className="logo" />
+        <img src="./image/-logoAlug.png" alt="Logo Alug" className="logo-alug"/>
 
       </div>
 
       <div className='container-direita'>
         <form onSubmit={logar} className='formulario-login'>
+          <h2 className='titulo-formulario-login'>Acesse sua conta</h2>
           <p style={{ fontWeight: 'bold', marginTop: '10px' }}>{mensagem}</p>
           <div className='container-input'>
             <label className='labels-cadastro'>E-mail</label>

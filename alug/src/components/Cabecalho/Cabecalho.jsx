@@ -27,7 +27,10 @@ function Cabecalho() {
 
   return (
     <div className="container-cabecalho">
-      <img src="./image/AlugLogo.png" alt="" />
+      <img src="./image/-logoSimplesAlug.png"
+      alt="logo"
+      className='logo-simples'
+      />
 
       <CampoPesquisaCabecalho />
 

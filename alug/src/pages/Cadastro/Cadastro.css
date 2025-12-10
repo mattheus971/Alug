@@ -1,20 +1,23 @@
-.corpo-cadastro{
+.corpo-cadastro {
     display: flex;
     flex-direction: row;
-    
+
 }
 
-.container-esquerda{
+.container-esquerda {
     background-color: #2C3E50;
     height: 100vh;
-    width: 40%;    
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 32px;
+    flex-direction: column;
+    gap: 24px;
 }
 
-.container-direita{
+
+.container-direita {
     background-color: #C8CDD2;
     height: 100vh;
     width: 100%;
@@ -23,7 +26,7 @@
     align-items: center;
 }
 
-.formulario-cadastro{
+.formulario-cadastro {
     background-color: white;
     padding: 32px;
     border-radius: 16px;
@@ -32,22 +35,27 @@
     align-items: center;
     flex-direction: column;
     gap: 12px;
-    width: 60%;
-    height: 400px;
+    width: 40%;
+    min-height: 300px;
 }
 
-.container-input{
+.titulo-formulario-cadastro {
+    color: #454d55;
+    font-weight: 500;
+}
+
+.container-input {
     display: flex;
     flex-direction: column;
     width: 90%;
 }
 
-.labels-cadastro{
+.labels-cadastro {
     font-size: 14px;
     color: rgb(65, 65, 65);
 }
 
-.inputs-cadastro{
+.inputs-cadastro {
     padding: 8px;
     width: 100%;
     border: solid 1px #c8c8c8;
@@ -59,7 +67,7 @@
     outline: none;
 }
 
-.botao-cadastrar{
+.botao-cadastrar {
     margin-top: 10px;
     padding: 10px;
     width: 90%;
@@ -75,16 +83,16 @@
     outline: none;
 }
 
-.botao-criarconta:hover{
+.botao-criarconta:hover {
     background-color: #5ba7ff;
 }
 
-.link-cadastro-login{
+.link-cadastro-login {
     font-size: 14px;
     text-decoration: none;
     color: #2C3E50;
 }
 
-.link-cadastro-login:hover{
+.link-cadastro-login:hover {
     color: #0069e0;
 }

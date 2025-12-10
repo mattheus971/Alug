@@ -10,7 +10,7 @@ function InformacoesUsuario() {
   const { usuario, setUsuario, logout } = useContext(UsuarioContext);
   const navigate = useNavigate();
 
-  const [campoEditando, setCampoEditando] = useState(null); 
+  const [campoEditando, setCampoEditando] = useState(null);
 
   const salvarCampo = async (campo, valor) => {
     if (!usuario) return;
@@ -90,6 +90,17 @@ function InformacoesUsuario() {
           <h3>-</h3>
         </div>
 
+        <div
+          className="container-meu-dashboard"
+          onClick={() => navigate("/dashboard")}
+        >
+          <div>
+            <h3 style={{fontWeight: "500"}}>Dashboard</h3>
+            <p>Clique para ver seu dashboard</p>
+          </div>
+          <h3>-</h3>
+        </div>
+
         <div className="container-informacoes">
           <div className="cabecalho-informacoes">
             <h3>Minhas informações</h3>
@@ -145,16 +156,17 @@ function InformacoesUsuario() {
           </div>
 
         </div>
-          <div className="container-botoes">
-          <button className="btn-delete-minhasinfos" onClick={deletarConta}>
-            Excluir Conta
-          </button>
-          <button className="btn-sair-minhasinfos" onClick={() => {logout(); navigate("/login");}}>
+        <div className="container-botoes">
+          <button className="btn-sair-minhasinfos" onClick={() => { logout(); navigate("/login"); }}>
             Sair
           </button>
 
-          </div>
-        
+          <button className="btn-delete-minhasinfos" onClick={deletarConta}>
+            Excluir Conta
+          </button>
+
+        </div>
+
 
         {campoEditando && (
           <ModalEdit
