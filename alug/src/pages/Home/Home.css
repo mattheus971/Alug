@@ -4,9 +4,19 @@
   width: 100%;
   padding: 40px 20px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* PC → 3 colunas */
+  grid-template-columns: repeat(3, 1fr);
+  /* PC → 3 colunas */
   gap: 25px;
   justify-items: center;
+}
+
+.titulo-pagina-home {
+  margin-bottom: 40px;
+  color: grey;
+  font-weight: 500;
+  justify-self: center;
+  font-size: 24px;
+  margin: 32px;
 }
 
 /* telas entre 1100px e 850px → 3 colunas */

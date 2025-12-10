@@ -19,7 +19,7 @@ const router = createBrowserRouter([
     {path: "/criar-anuncio", element: <CriarAnuncio />},
     {path: "/editar-anuncio/:id", element: <EditarAnuncio />},
     {path: "/meus-anuncios", element: <MeusAnuncios />},
-    {path: "/informacoes-anuncio/:id", element: <InformacoesAnuncio />},
+    {path: "/informacoes-anuncio", element: <InformacoesAnuncio />},
     {path: "/minhas-informacoes", element: <InformacoesUsuario />},
     {path: "/dashboard", element: <Dashboard/>}
 ])

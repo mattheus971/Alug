@@ -26,6 +26,8 @@ function Home() {
     <>
       <Cabecalho />
 
+      <h1 className="titulo-pagina-home">Anúncio mais recentes</h1>
+
       <div className="home-container">
         {imoveis.map((imovel) => (
           <CardAnuncio

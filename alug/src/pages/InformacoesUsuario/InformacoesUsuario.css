@@ -1,4 +1,4 @@
-.corpo-informacoes-usuario{
+.corpo-informacoes-usuario {
     width: 100%;
     min-height: 100px;
     display: flex;
@@ -9,7 +9,7 @@
 }
 
 
-.container-avatar-nome-usuario{
+.container-avatar-nome-usuario {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,15 +17,15 @@
     gap: 18px;
 }
 
-.foto-usuario{
+.foto-usuario {
     background-color: rgb(238, 238, 238);
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    border: solid 2px grey;
+    border: solid 2px #4A90E2;
 }
 
-.container-meus-anuncios{
+.container-meus-anuncios {
     min-height: 100px;
     width: 700px;
     display: flex;
@@ -38,15 +38,15 @@
     cursor: pointer;
 }
 
-.container-meus-anuncios h3{
+.container-meus-anuncios h3 {
     font-weight: 500;
 }
 
-.container-meus-anuncios:hover{
+.container-meus-anuncios:hover {
     background-color: whitesmoke;
 }
 
-.container-informacoes{
+.container-informacoes {
     min-height: 100px;
     width: 700px;
     display: flex;
@@ -56,75 +56,86 @@
     overflow: hidden;
 }
 
-.campo{
-  border-top: solid rgb(182, 182, 182) 1px ;
-  height: 74px;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 28px 0px 28px;
-  cursor: pointer;
+.campo {
+    border-top: solid rgb(182, 182, 182) 1px;
+    height: 74px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 28px 0px 28px;
+    cursor: pointer;
 }
 
-.campo:hover{
-  background-color: whitesmoke;
+.campo:hover {
+    background-color: whitesmoke;
 }
 
 
-.cabecalho-informacoes{
+.cabecalho-informacoes {
     padding: 24px;
 }
 
-.cabecalho-informacoes h3{
+.cabecalho-informacoes h3 {
     font-weight: 500;
 }
 
-.cntr-lbl-inf{
+.cntr-lbl-inf {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.cntr-lbl-inf h3{
+.cntr-lbl-inf h3 {
     font-weight: 500;
     color: rgb(97, 97, 97);
 }
 
-.nome-usuario-pg-infos{
+.nome-usuario-pg-infos {
     font-weight: 500;
 }
 
 .container-botoes {
     display: flex;
-    justify-content: center; /* inicia à esquerda do quadro */
-    gap: 460px; /* espaço entre os botões */
+    justify-content: center;
+    /* inicia à esquerda do quadro */
+    gap: 460px;
+    /* espaço entre os botões */
     width: 100%;
-    margin-top: 12px; /* distância do último campo */
+    margin-top: 12px;
+    /* distância do último campo */
 }
 
-.btn-delete {
-    background-color: #e74c3c; /* vermelho */
-    color: white;
-    height: 40px;
-    width: 120px;
-    border-radius: 9px;
+.btn-delete-minhasinfos {
+    padding: 6px 12px;
     border: none;
+    border-radius: 6px;
     cursor: pointer;
+    background-color: #4A90E2;
     font-weight: 500;
-}
-
-.btn-sair {
-    background-color: #3498db; /* azul */
     color: white;
-    height: 40px;
-    width: 120px;
-    border-radius: 9px;
-    border: none;
-    cursor: pointer;
-    font-weight: 500;
 }
 
+.btn-delete-minhasinfos:hover{
+    background-color: #58a1f5;
+}
+
+.btn-sair-minhasinfos {
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    border: solid 1px grey;
+    background-color: white;
+    font-weight: 500;
+    color: grey;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-sair-minhasinfos:hover {
+    background-color: grey;
+    color: white;
+}
 

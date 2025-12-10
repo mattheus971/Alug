@@ -2,18 +2,21 @@
 .card {
   width: 330px;                 /* AUMENTADO de 300 → 330px */
   background-color: #fff;
-  border-radius: 14px;          /* bordas mais modernas */
+  border-top-left-radius: 14px;          /* bordas mais modernas */
+  border-top-right-radius: 14px; 
+  border-bottom-right-radius: 0px; 
   box-shadow: 0 4px 12px rgba(0,0,0,0.13);
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   position: relative;
+  border: solid 1px rgb(240, 240, 240);
 }
 
 /* Hover elegante */
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 22px rgba(0,0,0,0.23);
+  transform: translateY(-8px);
+  box-shadow:  20px 50px rgba(0,0,0,0.23);
 }
 
 /* Imagem */
@@ -48,7 +51,7 @@
 }
 
 .card .btn-favorito-grande {
-  background-color: #2C3E50 !important;
+  background-color: #4A90E2 !important;
   color: #fff !important;
   border: none;
   border-radius: 10px;
@@ -59,11 +62,11 @@
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.25s ease, transform 0.2s ease;
+  transform: ease;
 }
 
 .card .btn-favorito-grande:hover {
-  background-color: #151f56 !important;
-  transform: translateY(-2px);
+  background-color: #56a0f5 !important;
 }
 
 

@@ -146,10 +146,10 @@ function InformacoesUsuario() {
 
         </div>
           <div className="container-botoes">
-          <button className="btn-delete" onClick={deletarConta}>
+          <button className="btn-delete-minhasinfos" onClick={deletarConta}>
             Excluir Conta
           </button>
-          <button className="btn-sair" onClick={() => {logout(); navigate("/login");}}>
+          <button className="btn-sair-minhasinfos" onClick={() => {logout(); navigate("/login");}}>
             Sair
           </button>
 

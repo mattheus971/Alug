@@ -89,7 +89,7 @@ function Cadastro() {
 
           
           <div className='container-input'>
-            <label className='labels-cadastro'>Senha</label>
+            <label className='labels-cadastro'>Data Nascimento</label>
             <input
               type="date" 
               className='inputs-cadastro'

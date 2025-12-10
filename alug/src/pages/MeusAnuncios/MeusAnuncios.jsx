@@ -42,7 +42,7 @@ function MeusAnuncios() {
       <CabecalhoSimples />
       <div className="meusanuncios-container">
 
-        <h1>Meus Anúncios</h1>
+        <h1 className="titulo-pagina-meusanuncios">Meus Anúncios</h1>
 
         {anuncios.length === 0 ? (
           <p className="no-ads">Você ainda não possui anúncios.</p>
@@ -50,7 +50,7 @@ function MeusAnuncios() {
           <div className="lista-anuncios">
             {anuncios.map((item) => (
               <div className="card-anuncio" key={item.id_imoveis}>
-                <h2>{item.titulo}</h2>
+                <h2 className="titulo-anuncio-meusanuncios">{item.titulo}</h2>
                 {item.imagem && (
                   <img
                     src={item.imagem ? `http://localhost:3000/uploads/${item.imagem}` : '/image/AlugLogo.png'}
@@ -65,14 +65,14 @@ function MeusAnuncios() {
 
                 <div className="anuncio-buttons">
                   <button
-                    className="btn-edit"
+                    className="btn-edit-meusanuncios"
                     onClick={() => navigate(`/editar-anuncio/${item.id_imoveis}`)}
                   >
                     Editar
                   </button>
 
                   <button
-                    className="btn-delete"
+                    className="btn-delete-meusanuncios"
                     onClick={() => deletarAnuncio(item.id_imoveis)}
                   >
                     Deletar
