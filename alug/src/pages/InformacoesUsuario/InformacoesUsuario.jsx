@@ -67,7 +67,8 @@ function InformacoesUsuario() {
 
   return (
     <>
-      <CabecalhoSimples />
+      <CabecalhoSimples destinoCriarAnuncio="/criar-anuncio" />
+
 
       <div className="corpo-informacoes-usuario">
 
@@ -92,7 +93,7 @@ function InformacoesUsuario() {
 
         <div
           className="container-meu-dashboard"
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/teste-dashboard")}
         >
           <div>
             <h3 style={{fontWeight: "500"}}>Dashboard</h3>

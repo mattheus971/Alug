@@ -16,12 +16,10 @@ export const UsuarioContextProvider = ({ children }) => {
 
   const formatDateForInput = (value) => {
     if (!value) return "";
-    // caso venha DD/MM/YYYY
     if (/^\d{2}\/\d{2}\/\d{4}$/.test(value)) {
       const [d, m, y] = value.split("/");
       return `${y}-${m.padStart(2, "0")}-${d.padStart(2, "0")}`;
     }
-    // tenta parse de ISO/other -> retorna YYYY-MM-DD
     const dt = new Date(value);
     if (!isNaN(dt)) return dt.toISOString().split("T")[0];
     return value;
@@ -49,11 +47,12 @@ export const UsuarioContextProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    if (!usuario) return;
-    const id = usuario.id ?? usuario.id_usuario;
-    if (id) fetchUsuarioById(id);
-  }, [usuario]);
+useEffect(() => {
+  if (!usuario) return;
+  const id = usuario.id ?? usuario.id_usuario;
+  if (id) fetchUsuarioById(id);
+}, []);
+
 
   const logout = () => {
     localStorage.removeItem("usuario");

@@ -8,7 +8,6 @@ import EditarAnuncio from "../pages/EditarAnuncio/EditarAnuncio";
 import MeusAnuncios from "../pages/MeusAnuncios/MeusAnuncios";
 import InformacoesAnuncio from "../pages/InformacoesAnuncio/InformacoesAnuncio";
 import InformacoesUsuario from "../pages/InformacoesUsuario/InformacoesUsuario";
-import Dashboard from "../pages/Dashboard/Dashboard";
 import TesteDashboard from "../pages/TesteDashboard/TesteDashboard";
 
 
@@ -20,9 +19,8 @@ const router = createBrowserRouter([
     {path: "/criar-anuncio", element: <CriarAnuncio />},
     {path: "/editar-anuncio/:id", element: <EditarAnuncio />},
     {path: "/meus-anuncios", element: <MeusAnuncios />},
-    {path: "/informacoes-anuncio", element: <InformacoesAnuncio />},
+    {path: "/informacoes-anuncio/:id", element: <InformacoesAnuncio />},
     {path: "/minhas-informacoes", element: <InformacoesUsuario />},
-    {path: "/dashboard", element: <Dashboard/>},
     {path: "/teste-dashboard", element: <TesteDashboard/>}
 ])
 
